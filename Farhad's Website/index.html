@@ -3,382 +3,2701 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowEx Figma Diagram</title>
+    <title>Md. Farhad Billah - Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #1a1a1a;
-            color: #ffffff;
-            overflow-x: auto;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        .figma-canvas {
-            min-width: 2400px;
-            min-height: 1600px;
-            position: relative;
-            background: linear-gradient(45deg, #0f0f0f 25%, transparent 25%), 
-                        linear-gradient(-45deg, #0f0f0f 25%, transparent 25%), 
-                        linear-gradient(45deg, transparent 75%, #0f0f0f 75%), 
-                        linear-gradient(-45deg, transparent 75%, #0f0f0f 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6b73ff 50%, #000dff 50%);
         }
-
-        .screen {
-            position: absolute;
-            background: #2c2c2c;
-            border: 2px solid #404040;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .screen:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-            border-color: #6366f1;
-        }
-
-        .screen-header {
-            background: #404040;
-            padding: 12px 16px;
-            border-radius: 10px 10px 0 0;
-            font-weight: 600;
-            font-size: 14px;
-            color: #ffffff;
-        }
-
-        .screen-content {
-            padding: 20px;
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        .navigation {
-            background: #6366f1;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-size: 11px;
-        }
-
-        .feature-item {
-            background: #3c3c3c;
-            padding: 8px 12px;
-            margin: 6px 0;
-            border-radius: 6px;
-            border-left: 3px solid #10b981;
-        }
-
-        .quiz-option {
-            background: #4c4c4c;
-            padding: 6px 10px;
-            margin: 4px 0;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .quiz-option:hover {
-            background: #5c5c5c;
-        }
-
-        .progress-bar {
-            background: #404040;
+        
+        .skill-bar {
             height: 8px;
             border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
+            background-color: #e0e0e0;
         }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #10b981, #34d399);
+        
+        .skill-progress {
             height: 100%;
-            width: 10%;
             border-radius: 4px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
         }
-
-        .button {
-            background: #6366f1;
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 32px;
+            height: calc(100% - 32px);
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* New animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+          .delay-400 {
+            animation-delay: 0.4s;
+        }
+        
+        /* About section background */
+        .bg-about-pattern {
+            background: linear-gradient(120deg, #e0f2fe 0%, #eff6ff 50%, #f0f9ff 100%);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bg-about-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px), radial-gradient(#3b82f6 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        /* Gallery styles */
+        .gallery-tab {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-tab:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-tab.active {
+            background-color: #4f46e5;
             color: white;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 12px;
-            transition: background 0.2s;
         }
-
-        .button:hover {
-            background: #5856eb;
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            transform: scale(1);
         }
-
-        .badge {
-            background: #fbbf24;
-            color: #92400e;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 500;
-            margin: 2px;
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+        
+        /* Particle animation */
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+        }
+        
+        .glow:hover {
+            box-shadow: 0 0 25px rgba(79, 70, 229, 0.8);
+        }
+        
+        /* Wave animation */
+        .wave {
+            animation: wave 2s infinite;
+            transform-origin: 70% 70%;
             display: inline-block;
         }
-
-        .arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
-
-        .arrow-right {
-            border-left: 12px solid #6366f1;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-        }
-
-        .flow-arrow {
-            position: absolute;
-            color: #6366f1;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .title {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            text-align: center;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Screen positioning */
-        .home-screen { top: 80px; left: 50px; width: 320px; height: 480px; }
-        .quiz-screen { top: 80px; left: 450px; width: 320px; height: 480px; }
-        .results-screen { top: 80px; left: 850px; width: 320px; height: 480px; }
-        .avatar-screen { top: 80px; left: 1250px; width: 320px; height: 480px; }
-        .agent-screen { top: 600px; left: 50px; width: 320px; height: 400px; }
-        .destination-screen { top: 600px; left: 450px; width: 320px; height: 400px; }
-        .automation-screen { top: 600px; left: 850px; width: 320px; height: 400px; }
-
-        /* Responsive design */
-        @media (max-width: 1200px) {
-            .figma-canvas {
-                min-width: 100%;
-                min-height: 2000px;
-            }
-            
-            .screen {
-                position: relative;
-                margin: 20px auto;
-                display: block;
-            }
-            
-            .flow-arrow {
-                display: none;
-            }
+        
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
         }
     </style>
 </head>
-<body>
-    <div class="figma-canvas">
-        <div class="title">GrowdFx User Journey Flow</div>
-        
-        <!-- Home Screen -->
-        <div class="screen home-screen">
-            <div class="screen-header">🏠 Home Dashboard</div>
-            <div class="screen-content">
-                <div class="navigation">
-                    <div>📋 Quiz | 📊 Results | 👤 Youth Avatar | 🤖 Agent | 🎯 Destination | ⚙️ Automation</div>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Particle background -->
+    <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
+
+
+
+    <!-- Header/Navigation -->
+    <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold flex items-center">
+                    <span class="mr-2">Md. Farhad Billah</span>
+                    <span class="wave text-xl">👋</span>
                 </div>
-                
-                <div style="text-align: center; margin: 20px 0;">
-                    <h3 style="color: #10b981; margin-bottom: 12px;">Start Your Journey</h3>
-                    <p style="color: #9ca3af; font-size: 11px;">Discover your path to personal growth</p>
-                </div>
-                
-                <div class="feature-item">📝 Quiz Funnel</div>
-                <div class="feature-item">🧠 Mental Health Topics</div>
-                <div class="feature-item">🎯 Personalized Results</div>
-                <div class="feature-item">🔗 Tool Integration</div>
-                
-                <button class="button" style="width: 100%;">Begin Assessment</button>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#about" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-user mr-1"></i> About</a></li>
+                        <li><a href="#experience" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-briefcase mr-1"></i> Experience</a></li>
+                        <li><a href="#education" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-graduation-cap mr-1"></i> Education</a></li>
+                        <li><a href="#gallery" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-images mr-1"></i> Gallery</a></li>
+                        <li><a href="#skills" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-code mr-1"></i> Skills</a></li>
+                        <li><a href="#projects" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-project-diagram mr-1"></i> Projects</a></li>
+                        <li><a href="#contact" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-envelope mr-1"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="md:hidden text-2xl glow" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-900" id="mobile-menu">
+            <div class="px-4 py-2">
+                <ul class="space-y-2">
+                    <li><a href="#about" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-user mr-2"></i> About</a></li>
+                    <li><a href="#experience" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-briefcase mr-2"></i> Experience</a></li>
+                    <li><a href="#education" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-graduation-cap mr-2"></i> Education</a></li>
+                    <li><a href="#gallery" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-images mr-2"></i> Gallery</a></li>
+                    <li><a href="#skills" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-code mr-2"></i> Skills</a></li>
+                    <li><a href="#projects" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-project-diagram mr-2"></i> Projects</a></li>
+                    <li><a href="#contact" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-envelope mr-2"></i> Contact</a></li>
+                </ul>
+        </div>
+        </div>
+    </header>
 
-        <!-- Quiz Screen -->
-        <div class="screen quiz-screen">
-            <div class="screen-header">📋 Quiz Funnel</div>
-            <div class="screen-content">
-                <h4 style="color: #10b981; margin-bottom: 16px;">What is your biggest pain point?</h4>
-                
-                <div class="quiz-option">🍎 Poor diet</div>
-                <div class="quiz-option">😤 Misbehavior</div>
-                <div class="quiz-option">📚 Lack of organization</div>
-                <div class="quiz-option">⏰ Lack of time management</div>
-                <div class="quiz-option">😴 Lack of interest in class</div>
-                <div class="quiz-option">👥 Peer pressure</div>
-                <div class="quiz-option">💰 Limited resources</div>
-                <div class="quiz-option">📱 Impact of social media</div>
-                
-                <div style="margin-top: 20px;">
-                    <div style="color: #9ca3af; font-size: 11px;">Progress: Step 1/10</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                
-                <button class="button" style="width: 100%;">Continue →</button>
-            </div>
+
+
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white"></div>
+            <div class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-white"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-40 h-40 rounded-full bg-white"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-28 h-28 rounded-full bg-white"></div>
         </div>
 
-        <!-- Results Screen -->
-        <div class="screen results-screen">
-            <div class="screen-header">📊 Results</div>
-            <div class="screen-content">
-                <h4 style="color: #10b981; margin-bottom: 16px;">Your Improvement Areas</h4>
-                <p style="color: #9ca3af; font-size: 11px; margin-bottom: 16px;">Based on your responses:</p>
-                
-                <div class="feature-item">💆‍♀️ How to practice self-care</div>
-                <div class="feature-item">📋 How to develop organizational skills</div>
-                <div class="feature-item">🌱 How to embrace growth opportunities</div>
-                
-                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Actionable Topics:</h5>
-                <div style="background: #3c3c3c; padding: 12px; border-radius: 6px;">
-                    <div style="margin: 4px 0;">🧘 Self-Care Guide</div>
-                    <div style="margin: 4px 0;">⏰ Time Management Course</div>
-                    <div style="margin: 4px 0;">🎯 Goal-Setting Workshop</div>
-                </div>
-                
-                <button class="button" style="width: 100%;">Explore More</button>
-            </div>
-        </div>
 
-        <!-- Youth Avatar Screen -->
-        <div class="screen avatar-screen">
-            <div class="screen-header">👤 Youth Avatar</div>
-            <div class="screen-content">
-                <div style="text-align: center; margin-bottom: 16px;">
-                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 32px;">👤</div>
-                    <button style="background: #404040; border: none; color: #9ca3af; padding: 4px 8px; border-radius: 4px; font-size: 10px;">Upload/Edit Avatar</button>
-                </div>
-                
-                <h5 style="color: #10b981; margin-bottom: 8px;">Goals:</h5>
-                <div class="feature-item">⏰ Improve time management</div>
-                <div class="feature-item">😌 Reduce stress</div>
-                
-                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Sources:</h5>
-                <div style="font-size: 11px; color: #9ca3af;">
-                    <div>🧠 Mental Health</div>
-                    <div>📈 Industry Benchmarks</div>
-                    <div>✨ Best Practices</div>
-                    <div>📚 Case Studies</div>
-                </div>
-                
-                <div style="margin-top: 16px;">
-                    <div style="color: #9ca3af; font-size: 11px;">Progress: Completed Tasks 3/10</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%;"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+    <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Farhad Billah</span></h1>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6">AI & Web Developer | Data Scientist</h2>
+        <p class="text-lg mb-8">
+            Passionate about solving complex problems with innovative technology solutions. Specializing in AI development, web technologies, and data science.
+        </p>
+        <div class="flex space-x-4">
+            <a href="#contact" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition glow">Contact Me</a>
+            <a href="#projects" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition glow">View Projects</a>
         </div>
-
-        <!-- Agent Screen -->
-        <div class="screen agent-screen">
-            <div class="screen-header">🤖 AI Agent</div>
-            <div class="screen-content">
-                <div style="background: #3c3c3c; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
-                    <div style="color: #10b981; font-size: 11px; margin-bottom: 8px;">💬 Assistant</div>
-                    <div style="font-size: 12px;">"Hello! How can I assist you today?"</div>
-                </div>
-                
-                <input type="text" placeholder="Type your message..." style="width: 100%; padding: 10px; background: #404040; border: 1px solid #5c5c5c; border-radius: 6px; color: white; font-size: 12px; margin-bottom: 12px;">
-                
-                <h5 style="color: #fbbf24; margin-bottom: 8px;">Guided Workflow:</h5>
-                <div style="font-size: 11px; color: #9ca3af;">
-                    <div>1️⃣ Take the Quiz</div>
-                    <div>2️⃣ Review Results</div>
-                    <div>3️⃣ Customize Avatar</div>
-                </div>
-                
-                <h5 style="color: #10b981; margin: 12px 0 8px 0;">Resources:</h5>
-                <div class="feature-item" style="font-size: 11px;">🧠 Mental Health Course</div>
-                <div class="feature-item" style="font-size: 11px;">⏰ Time Management Tips</div>
-            </div>
-        </div>
-
-        <!-- Destination Station Screen -->
-        <div class="screen destination-screen">
-            <div class="screen-header">🎯 Destination Station</div>
-            <div class="screen-content">
-                <h4 style="color: #10b981; margin-bottom: 12px;">🎉 Congratulations!</h4>
-                <p style="color: #9ca3af; font-size: 11px; margin-bottom: 12px;">You've completed the following:</p>
-                
-                <div class="feature-item" style="font-size: 11px;">✅ Improved time management</div>
-                <div class="feature-item" style="font-size: 11px;">✅ Learned self-care techniques</div>
-                
-                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Next Steps:</h5>
-                <div style="background: #3c3c3c; padding: 10px; border-radius: 6px; font-size: 11px;">
-                    <div>📚 Enroll in Advanced Course</div>
-                    <div>👥 Join Community Forum</div>
-                </div>
-                
-                <h5 style="color: #10b981; margin: 16px 0 8px 0;">Badges Earned:</h5>
-                <div>
-                    <span class="badge">⏰ Time Expert</span>
-                    <span class="badge">💆‍♀️ Self-Care Pro</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Automation Screen -->
-        <div class="screen automation-screen">
-            <div class="screen-header">⚙️ Automation</div>
-            <div class="screen-content">
-                <h5 style="color: #10b981; margin-bottom: 12px;">Integration:</h5>
-                <div class="feature-item" style="font-size: 11px;">🎨 Connect with Canva</div>
-                <div class="feature-item" style="font-size: 11px;">💼 Link with LinkedIn</div>
-                
-                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Automation Settings:</h5>
-                <div style="background: #3c3c3c; padding: 10px; border-radius: 6px; font-size: 11px;">
-                    <div>📅 Schedule Updates</div>
-                    <div>🔔 Set Reminders</div>
-                </div>
-                
-                <h5 style="color: #ec4899; margin: 16px 0 8px 0;">Help Center:</h5>
-                <div style="font-size: 11px; color: #9ca3af;">
-                    <div>❓ How to Use Automation</div>
-                    <div>💡 FAQs</div>
-                </div>
-                
-                <button class="button" style="width: 100%; margin-top: 12px;">Configure Settings</button>
-            </div>
-        </div>
-
-        <!-- Flow Arrows -->
-        <div class="flow-arrow" style="top: 300px; left: 390px;">→</div>
-        <div class="flow-arrow" style="top: 300px; left: 790px;">→</div>
-        <div class="flow-arrow" style="top: 300px; left: 1190px;">→</div>
-        <div class="flow-arrow" style="top: 580px; left: 200px; transform: rotate(90deg);">→</div>
-        <div class="flow-arrow" style="top: 800px; left: 390px;">→</div>
-        <div class="flow-arrow" style="top: 800px; left: 790px;">→</div>
     </div>
+
+    <div class="md:w-1/2 flex justify-center animate-fade-in delay-200">
+        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl floating-btn">
+            <!-- Image placed inside the circle -->
+            <img src="img/3.jpeg" alt="my image" class="absolute inset-0 w-full h-full object-cover" />
+        </div>
+    </div>
+</div>
+     </section>    
+     
+     
+     
+     <!-- About Section -->
+    <section id="about" class="py-16 bg-about-pattern relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-blue-100 opacity-40"></div>
+            <div class="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-blue-200 opacity-30"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-yellow-100 opacity-40"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-36 h-36 rounded-full bg-indigo-100 opacity-30"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+    <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">About <span class="text-blue-600">Me</span></h2>
+      <div class="flex flex-col md:flex-row items-center animate-fade-in delay-100">
+        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+            <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-500 shadow-xl glow relative transform transition-all duration-300 hover:scale-105" style="box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);">
+                <img src="img/2.jpeg" alt="Profile" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent"></div>
+            </div>
+        </div>
+        <div class="md:w-2/3 md:pl-12">
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
+                <h3 class="text-xl font-semibold mb-4 text-blue-800">Personal Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p class="font-medium">Date of Birth:</p>
+                        <p>10/08/2002</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Mailing Address:</p>
+                        <p>Unit # H9, The Vantage Main Road, Block A, Banasree, 1212 Dhaka, Bangladesh</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">E-Mail:</p>
+                        <p>farhadbillah2020@gmail.com</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Mobile:</p>
+                        <p>+8801704521205</p>
+                    </div>
+                </div>
+                  <h3 class="text-xl font-semibold mb-4 text-blue-800">Professional Profiles</h3>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-5 py-2 rounded-xl flex items-center hover:translate-y-[-3px] transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-github mr-2 text-xl"></i> GitHub
+                    </a>
+                    <a href="https://ieeexplore.ieee.org/author/141334061385538" target="_blank" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-2 rounded-xl flex items-center hover:translate-y-[-3px] transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fas fa-book mr-2 text-xl"></i> IEEE Xplore
+                    </a>
+                    <a href="https://www.hackerrank.com/profile/RunTimeE" target="_blank" class="bg-gradient-to-r from-green-500 to-green-700 text-white px-5 py-2 rounded-xl flex items-center hover:translate-y-[-3px] transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-hackerrank mr-2 text-xl"></i> HackerRank
+                    </a>
+                    <a href="https://codeforces.com/profile/farhadbillah2020" target="_blank" class="bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 rounded-xl flex items-center hover:translate-y-[-3px] transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fas fa-code mr-2 text-xl"></i> CodeForces
+                    </a>
+                    <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-xl flex items-center hover:translate-y-[-3px] transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-linkedin mr-2 text-xl"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="mt-12 bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-blue-100 animate-fade-in delay-200">
+        <h3 class="text-xl font-semibold mb-6 text-blue-800 text-center">References</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Reference 1 -->
+            <div class="bg-gradient-to-b from-white to-blue-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105">
+                <div class="relative mb-4">
+                    <div class="absolute inset-0 rounded-full bg-blue-100 transform -rotate-6"></div>
+                    <img src="img/arian.avif" alt="Saddam Hossain" class="w-20 h-20 rounded-full mx-auto relative border-2 border-blue-300 p-1 bg-white">
+                </div>
+                <h4 class="font-bold text-blue-700">Saddam Hossain (Arian)</h4>
+                <p class="text-sm text-gray-600 mb-3">CEO, Designers do Futuro</p>
+                <p class="mt-2 flex items-center justify-center text-gray-700"><i class="fas fa-envelope mr-2 text-blue-500"></i> arian@designersdofuturo.com</p>
+                <p class="flex items-center justify-center text-gray-700"><i class="fas fa-phone mr-2 text-blue-500"></i> +8801610003132</p>
+                <a href="http://www.designersdofuturo.com/" target="_blank" class="text-blue-600 hover:text-blue-800 inline-block mt-2 flex items-center justify-center">
+                    <i class="fas fa-globe mr-1"></i> Website
+                </a>
+            </div>
+            <!-- Reference 2 -->
+            <div class="bg-gradient-to-b from-white to-blue-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105">                <div class="relative mb-4">
+                    <div class="absolute inset-0 rounded-full bg-blue-100 transform -rotate-6"></div>
+                    <img src="img/Dr. Maheen Islam.jpg" alt="Dr. Maheen Islam" class="w-20 h-20 rounded-full mx-auto relative border-2 border-blue-300 p-1 bg-white">
+                </div>
+                <h4 class="font-bold text-blue-700">Dr. Maheen Islam</h4>
+                <p class="text-sm text-gray-600 mb-3">Associate Professor and Chairperson, Department of Computer Science and Engineering</p>
+                <p class="mt-2 flex items-center justify-center text-gray-700"><i class="fas fa-envelope mr-2 text-blue-500"></i> maheen@ewubd.edu</p>
+                <p class="flex items-center justify-center text-gray-700"><i class="fas fa-phone mr-2 text-blue-500"></i> +8801715009676</p>
+                <p class="flex items-center justify-center text-gray-700"><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.221</p>
+            </div>
+            <!-- Reference 3 -->
+            <div class="bg-gradient-to-b from-white to-blue-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105">
+                <div class="relative mb-4">
+                    <div class="absolute inset-0 rounded-full bg-blue-100 transform -rotate-6"></div>
+                    <img src="img/Dr. Taskeed Jabid.jpg" alt="Dr. Taskeed Jabid" class="w-20 h-20 rounded-full mx-auto relative border-2 border-blue-300 p-1 bg-white">
+                </div>
+                <h4 class="font-bold text-blue-700">Dr. Taskeed Jabid</h4>
+                <p class="text-sm text-gray-600 mb-3">Associate Professor, Department of Computer Science and Engineering</p>
+                <p class="mt-2 flex items-center justify-center text-gray-700"><i class="fas fa-envelope mr-2 text-blue-500"></i> taskeed@ewubd.edu</p>
+                <p class="flex items-center justify-center text-gray-700"><i class="fas fa-phone mr-2 text-blue-500"></i> +8801763704545</p>
+                <p class="flex items-center justify-center text-gray-700"><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.258</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </section>
+
+
+
+
+<!-- Experience Section -->
+<section id="experience" class="py-20 bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 relative overflow-hidden">
+    <!-- Decorative elements for background -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-cyan-300 blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-purple-400 blur-3xl"></div>
+        <div class="absolute top-1/2 right-1/4 w-48 h-48 rounded-full bg-blue-300 blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in text-white">Professional <span class="text-cyan-300">Experience</span></h2>
+        
+        <div class="max-w-10xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">                <!-- AI Developer -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-robot text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. AI Developer</h3>
+                        <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium mt-2 md:mt-0">Present</span>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
+                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 07/04/2024 – Present</p>
+                </div>
+                  <!-- Junior Web Developer -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-laptop-code text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. Web Developer</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
+                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 16/03/2024 – 07/04/2024</p>
+                </div>
+                  <!-- Front-End Developer (Label - 05) -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-code text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer (Label - 05)</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
+                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 03/2024 – 15/03/2024</p>
+                </div>
+                  <!-- Front-End Developer (Label - 01) -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-code text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer (Label - 01)</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
+                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 02/2024 – 03/2024</p>
+                </div>
+                  <!-- Front-End Developer -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-code text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
+                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 12/2023 – 02/2024</p>
+                  
+                </div>
+                  <!-- Junior Service Engineer -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-cogs text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Jr. Service Engineer</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">aamra technologies limited</p>
+                        <a href="https://www.aamratechnologies.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 07/2024 – 12/2024</p>
+                   
+                </div>
+                  <!-- Machine Learning Intern -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-brain text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Machine Learning Intern</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">CodSoft</p>
+                        <a href="https://www.codsoft.in" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-5">Kolkata, India • 07/2023 – 08/2023</p>
+
+                </div>
+                  <!-- Data Science Intern -->
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl hover:bg-white/95 transition-all duration-300 border border-cyan-200/30">
+                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
+                        <i class="fas fa-chart-line text-lg"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Data Science Intern</h3>
+                    </div>
+                    <div class="flex items-center mt-2 mb-4">
+                        <p class="text-gray-700 font-medium">Designers Do Futuro</p>
+                        <a href="https://www.designersdofuturo.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 08/2023 – 01/2024</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Add some animations and interactive elements -->
+    <style>
+        .timeline-item {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .glow {
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .glow:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Add smooth fade-in animations */
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+ 
+ 
+
+    <!-- Simple JavaScript for interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            // Add an observer to add animation when elements come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+            
+            // Mobile menu toggle functionality
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</section>
+    
+
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-gradient-to-r from-indigo-50 via-blue-50 to-purple-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-20 left-20 w-40 h-40 rounded-full bg-gradient-to-r from-blue-300 to-indigo-300 blur-2xl"></div>
+            <div class="absolute bottom-40 right-20 w-60 h-60 rounded-full bg-gradient-to-r from-purple-300 to-pink-300 blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-gradient-to-r from-cyan-300 to-teal-300 blur-2xl"></div>
+            <!-- Animated floating icons -->
+            <div class="absolute top-1/4 right-1/4 text-5xl text-indigo-300 opacity-30 floating-icon">📚</div>
+            <div class="absolute bottom-1/3 left-1/4 text-4xl text-blue-300 opacity-30 floating-icon-reverse">🎓</div>
+            <div class="absolute top-2/3 right-1/3 text-5xl text-purple-300 opacity-30 floating-icon-slow">🧠</div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in">
+                <span class="relative inline-block">
+                    <span class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 blur opacity-30 rounded-lg"></span>
+                    <span class="relative">Educational <span class="text-indigo-600">Qualifications</span></span>
+                </span>
+            </h2>
+
+            <div class="max-w-10xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">
+                <!-- BSc in CSE -->
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-indigo-100 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">🎓</span>
+                            <h3 class="text-2xl font-semibold text-indigo-800">BSc in CSE (Major: Data Science)</h3>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">07/2020 – 05/2024</span>
+                    </div>
+                    <p class="text-gray-700 mb-3 pl-14">
+                        <a href="https://www.ewubd.edu/" target="_blank" class="text-indigo-600 hover:underline flex items-center">
+                            <i class="fas fa-university mr-2"></i> East West University
+                        </a>
+                    </p>
+                    <div class="pl-14 flex items-center">
+                        <span class="font-medium text-gray-800 mr-2">CGPA:</span>
+                        <div class="bg-gray-100 h-6 w-full rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full" style="width: 77%"></div>
+                        </div>
+                        <span class="ml-2 font-bold text-indigo-800">3.08/4.0</span>
+                    </div>
+                </div>
+
+                <!-- Higher Secondary -->
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-green-100 hover:shadow-xl hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">🏫</span>
+                            <h3 class="text-2xl font-semibold text-green-800">Higher Secondary School Certificate</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">2019</span>
+                    </div>
+                    <p class="text-gray-700 mb-3 pl-14">
+                        <a href="https://sbgc.gov.bd/" target="_blank" class="text-green-600 hover:underline flex items-center">
+                            <i class="fas fa-school mr-2"></i> Shahid Buddhijibi Govt. College
+                        </a>
+                    </p>
+                    <div class="pl-14 flex items-center">
+                        <span class="font-medium text-gray-800 mr-2">GPA:</span>
+                        <div class="bg-gray-100 h-6 w-full rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-full rounded-full" style="width: 98.4%"></div>
+                        </div>
+                        <span class="ml-2 font-bold text-green-800">4.92/5.0</span>
+                    </div>
+                </div>
+
+                <!-- Secondary School -->
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-purple-100 hover:shadow-xl hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">📝</span>
+                            <h3 class="text-2xl font-semibold text-purple-800">Secondary School Certificate</h3>
+                        </div>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">2017</span>
+                    </div>
+                    <p class="text-gray-700 mb-3 pl-14">
+                        <a href="https://www.harimohan.edu.bd/" target="_blank" class="text-purple-600 hover:underline flex items-center">
+                            <i class="fas fa-school mr-2"></i> Harimohan Govt. High School
+                        </a>
+                    </p>
+                    <div class="pl-14 flex items-center">
+                        <span class="font-medium text-gray-800 mr-2">GPA:</span>
+                        <div class="bg-gray-100 h-6 w-full rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full" style="width: 100%"></div>
+                        </div>
+                        <span class="ml-2 font-bold text-purple-800">5.0/5.0</span>
+                    </div>
+                </div>
+
+                <!-- Online Courses -->
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-yellow-100 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">🌐</span>
+                        <h3 class="text-2xl font-semibold text-yellow-700">Online Courses</h3>
+                    </div>
+                    <ul class="space-y-4 pl-14">
+                        <li class="relative">
+                            <div class="absolute left-0 top-0 mt-1 -ml-6 w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="flex justify-between">
+                                <p class="font-medium text-gray-800">
+                                    <a href="https://www.programming-hero.com/" target="_blank" class="text-yellow-600 hover:underline">
+                                        <i class="fas fa-laptop-code mr-2"></i> Programming Hero (Label - 01)
+                                    </a>
+                                </p>
+                                <p class="text-sm text-gray-600 font-mono">06/2024 - 02/2025</p>
+                            </div>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute left-0 top-0 mt-1 -ml-6 w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="flex justify-between">
+                                <p class="font-medium text-gray-800">
+                                    <a href="https://ostad.app/" target="_blank" class="text-yellow-600 hover:underline">
+                                        <i class="fas fa-graduation-cap mr-2"></i> Ostad
+                                    </a>
+                                </p>
+                                <p class="text-sm text-gray-600 font-mono">06/2024 - 12/2024</p>
+                            </div>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute left-0 top-0 mt-1 -ml-6 w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="flex justify-between">
+                                <p class="font-medium text-gray-800">
+                                    <a href="https://www.programming-hero.com/" target="_blank" class="text-yellow-600 hover:underline">
+                                        <i class="fas fa-laptop-code mr-2"></i> Programming Hero (Label - 02)
+                                    </a>
+                                </p>
+                                <p class="text-sm text-gray-600 font-mono">04/2025 - Present</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .floating-icon {
+                animation: float-animation 6s ease-in-out infinite;
+            }
+            
+            .floating-icon-reverse {
+                animation: float-animation-reverse 7s ease-in-out infinite;
+            }
+            
+            .floating-icon-slow {
+                animation: float-animation 8s ease-in-out infinite;
+            }
+            
+            @keyframes float-animation {
+                0% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-15px) rotate(5deg); }
+                100% { transform: translateY(0) rotate(0deg); }
+            }
+            
+            @keyframes float-animation-reverse {
+                0% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(15px) rotate(-5deg); }
+                100% { transform: translateY(0) rotate(0deg); }
+            }
+        </style>
+    </section>
+
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gradient-to-br from-slate-900 via-sky-900 to-blue-900 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iLjA1Ij48cGF0aCBkPSJNMzYgMzRjMC0yLjIwOCAxLjc5NS00IDQtNHM0IDEuNzkyIDQgNC0xLjc5NSA0LTQgNC00LTEuNzkyLTQtNHptMC0yYzAtMS4xMDQuODk4LTIgMi0yczIgLjg5NiAyIDItLjg5OCAyLTIgMi0yLS44OTYtMi0yeiIvPjwvZz48L2c+PC9zdmc+')] opacity-5"></div>
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-600/20 blur-3xl animate-blob"></div>
+            <div class="absolute top-1/3 right-1/3 w-80 h-80 rounded-full bg-cyan-600/20 blur-3xl animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 rounded-full bg-indigo-600/20 blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-blue-300 mb-4">
+                    Technical <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Skills</span>
+                </h2>
+                <div class="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+            </div>
+            
+            <div class="max-w-10xl mx-auto animate-fade-in delay-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Programming Languages -->
+                    <div class="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition-all duration-500 group">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-code text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-white group-hover:text-cyan-300 transition-colors duration-300">Programming Languages</h3>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <div class="space-y-6 mt-8">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Python</span>
+                                    <span class="text-cyan-300 font-mono">90%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 skill-progress-animation" data-percent="90"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">JavaScript</span>
+                                    <span class="text-cyan-300 font-mono">85%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 skill-progress-animation" data-percent="85"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Java</span>
+                                    <span class="text-cyan-300 font-mono">75%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 skill-progress-animation" data-percent="75"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">C/C++</span>
+                                    <span class="text-cyan-300 font-mono">70%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 skill-progress-animation" data-percent="70"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">SQL</span>
+                                    <span class="text-cyan-300 font-mono">80%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 skill-progress-animation" data-percent="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Web Development -->
+                    <div class="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition-all duration-500 group">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-laptop-code text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-white group-hover:text-indigo-300 transition-colors duration-300">Web Development</h3>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <div class="space-y-6 mt-8">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">HTML/CSS</span>
+                                    <span class="text-indigo-300 font-mono">95%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-indigo-400 to-purple-500 skill-progress-animation" data-percent="95"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">React</span>
+                                    <span class="text-indigo-300 font-mono">85%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-indigo-400 to-purple-500 skill-progress-animation" data-percent="85"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Node.js</span>
+                                    <span class="text-indigo-300 font-mono">80%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-indigo-400 to-purple-500 skill-progress-animation" data-percent="80"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">TailwindCSS</span>
+                                    <span class="text-indigo-300 font-mono">90%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-indigo-400 to-purple-500 skill-progress-animation" data-percent="90"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Django</span>
+                                    <span class="text-indigo-300 font-mono">75%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-indigo-400 to-purple-500 skill-progress-animation" data-percent="75"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI & Data Science -->
+                    <div class="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition-all duration-500 group">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-rose-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-brain text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-white group-hover:text-rose-300 transition-colors duration-300">AI & Data Science</h3>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-rose-500 to-orange-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <div class="space-y-6 mt-8">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Machine Learning</span>
+                                    <span class="text-rose-300 font-mono">85%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-rose-400 to-orange-500 skill-progress-animation" data-percent="85"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Deep Learning</span>
+                                    <span class="text-rose-300 font-mono">80%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-rose-400 to-orange-500 skill-progress-animation" data-percent="80"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">TensorFlow/Keras</span>
+                                    <span class="text-rose-300 font-mono">75%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-rose-400 to-orange-500 skill-progress-animation" data-percent="75"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Data Visualization</span>
+                                    <span class="text-rose-300 font-mono">90%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-rose-400 to-orange-500 skill-progress-animation" data-percent="90"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Big Data</span>
+                                    <span class="text-rose-300 font-mono">70%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-rose-400 to-orange-500 skill-progress-animation" data-percent="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Technologies -->
+                    <div class="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition-all duration-500 group">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-tools text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-white group-hover:text-emerald-300 transition-colors duration-300">Tools & Technologies</h3>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-green-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <div class="space-y-6 mt-8">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Git/GitHub</span>
+                                    <span class="text-emerald-300 font-mono">90%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-emerald-400 to-green-500 skill-progress-animation" data-percent="90"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Docker</span>
+                                    <span class="text-emerald-300 font-mono">75%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-emerald-400 to-green-500 skill-progress-animation" data-percent="75"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">AWS</span>
+                                    <span class="text-emerald-300 font-mono">70%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-emerald-400 to-green-500 skill-progress-animation" data-percent="70"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">VS Code</span>
+                                    <span class="text-emerald-300 font-mono">95%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-emerald-400 to-green-500 skill-progress-animation" data-percent="95"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-white">Jupyter Notebook</span>
+                                    <span class="text-emerald-300 font-mono">85%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-emerald-400 to-green-500 skill-progress-animation" data-percent="85"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add CSS for animations -->
+        <style>
+            @keyframes blob {
+                0% { transform: translate(0px, 0px) scale(1); }
+                33% { transform: translate(30px, -50px) scale(1.1); }
+                66% { transform: translate(-20px, 20px) scale(0.9); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+            
+            .animate-blob {
+                animation: blob 7s infinite;
+            }
+            
+            .animation-delay-2000 {
+                animation-delay: 2s;
+            }
+            
+            .animation-delay-4000 {
+                animation-delay: 4s;
+            }
+            
+            .skill-progress-animation {
+                width: 0;
+                animation: progress 1.5s ease-out forwards;
+            }
+            
+            @keyframes progress {
+                0% { width: 0; }
+                100% { width: var(--percent); }
+            }
+            
+            .skill-item {
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            
+            @keyframes fadeInUp {
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            .skill-item:nth-child(1) { animation-delay: 0.1s; }
+            .skill-item:nth-child(2) { animation-delay: 0.2s; }
+            .skill-item:nth-child(3) { animation-delay: 0.3s; }
+            .skill-item:nth-child(4) { animation-delay: 0.4s; }
+            .skill-item:nth-child(5) { animation-delay: 0.5s; }
+        </style>
+
+        <!-- Add JavaScript for the skill progress animation -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set up the intersection observer for skill bars
+                const skillSections = document.querySelectorAll('.skill-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const progressBars = entry.target.querySelectorAll('.skill-progress-animation');
+                            progressBars.forEach(bar => {
+                                const percent = bar.getAttribute('data-percent') + '%';
+                                bar.style.setProperty('--percent', percent);
+                                bar.classList.add('animate');
+                            });
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                skillSections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+        </script>
+    </section>
+
+    
+
+    <!-- Datathon Achievements Section -->
+    <section id="datathon" class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iLjA1Ij48cGF0aCBkPSJNMzYgMzRjMC0yLjIwOCAxLjc5NS00IDQtNHM0IDEuNzkyIDQgNC0xLjc5NSA0LTQgNC00LTEuNzkyLTQtNHptMC0yYzAtMS4xMDQuODk4LTIgMi0yczIgLjg5NiAyIDItLjg5OCAyLTIgMi0yLS44OTYtMi0yeiIvPjwvZz48L2c+PC9zdmc+')] opacity-5"></div>
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-amber-500/10 blur-3xl animate-blob"></div>
+            <div class="absolute top-1/3 right-1/3 w-80 h-80 rounded-full bg-yellow-500/10 blur-3xl animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 rounded-full bg-orange-500/10 blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold inline-block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-300 mb-4">
+                    Datathon <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-300">Achievements</span>
+                </h2>
+                <div class="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-amber-500 to-yellow-500"></div>
+                <p class="text-yellow-100/70 mt-4 max-w-2xl mx-auto">Recognitions and accomplishments in data science competitions and hackathons</p>
+            </div>
+            
+            <div class="max-w-10xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-amber-400/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.3)] transition-all duration-500 group transform hover:-translate-y-2">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <div class="ml-6">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition-colors duration-300">Best Campus Ambassador</h3>
+                                <p class="text-amber-100/70 text-sm">Robo Tech Valley</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <p class="text-white/70 ml-6 mb-6">Recognized for outstanding contributions and leadership in promoting technology events and workshops within the university community.</p>
+                        
+                        <div class="flex items-center justify-between text-sm ml-6">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span class="text-yellow-100">05/2021 – 07/2021</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span class="text-yellow-100">East West University</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute top-4 right-4 w-3 h-3 rounded-full bg-amber-400/30 animate-ping"></div>
+                        <div class="absolute bottom-8 right-8 w-2 h-2 rounded-full bg-yellow-400/40 animate-ping" style="animation-delay: 1s;"></div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-amber-400/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.3)] transition-all duration-500 group transform hover:-translate-y-2">
+                        <div class="flex items-center mb-6 relative">
+                            <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5"></path>
+                                    <path d="M2 12l10 5 10-5"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-6">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition-colors duration-300">6th Place Qualifier</h3>
+                                <p class="text-amber-100/70 text-sm">Robi Datathon 3.0</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                        
+                        <p class="text-white/70 ml-6 mb-6">Successfully qualified in the top 6 teams among hundreds of participants by developing innovative data-driven solutions for real-world telecom challenges.</p>
+                        
+                        <div class="flex items-center justify-between text-sm ml-6">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span class="text-yellow-100">2024</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span class="text-yellow-100">Organized by Robi</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute top-6 right-6 w-3 h-3 rounded-full bg-amber-400/30 animate-ping"></div>
+                        <div class="absolute bottom-10 right-10 w-2 h-2 rounded-full bg-yellow-400/40 animate-ping" style="animation-delay: 1.5s;"></div>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        
+        <!-- Add CSS for animations and styles -->
+        <style>
+            @keyframes blob {
+                0% { transform: translate(0px, 0px) scale(1); }
+                33% { transform: translate(30px, -50px) scale(1.1); }
+                66% { transform: translate(-20px, 20px) scale(0.9); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+            
+            .animate-blob {
+                animation: blob 12s infinite alternate;
+            }
+            
+            .animation-delay-2000 {
+                animation-delay: 2s;
+            }
+            
+            .animation-delay-4000 {
+                animation-delay: 4s;
+            }
+            
+            .achievement-card {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.8s ease forwards;
+            }
+            
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .achievement-card:nth-child(1) {
+                animation-delay: 0.3s;
+            }
+            
+            .achievement-card:nth-child(2) {
+                animation-delay: 0.6s;
+            }
+            
+            .tech-tag {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: linear-gradient(to right, rgba(245, 158, 11, 0.1), rgba(252, 211, 77, 0.1));
+                color: #fcd34d;
+                border: 1px solid rgba(245, 158, 11, 0.2);
+                border-radius: 9999px;
+                font-size: 0.875rem;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(4px);
+                margin-bottom: 0.5rem;
+                opacity: 0;
+                transform: translateY(10px);
+                animation: tagFadeIn 0.5s ease forwards;
+            }
+            
+            .tech-tag:hover {
+                background: linear-gradient(to right, rgba(245, 158, 11, 0.2), rgba(252, 211, 77, 0.2));
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+            }
+            
+            @keyframes tagFadeIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .tech-tag:nth-child(1) { animation-delay: 0.8s; }
+            .tech-tag:nth-child(2) { animation-delay: 0.9s; }
+            .tech-tag:nth-child(3) { animation-delay: 1.0s; }
+            .tech-tag:nth-child(4) { animation-delay: 1.1s; }
+            .tech-tag:nth-child(5) { animation-delay: 1.2s; }
+            .tech-tag:nth-child(6) { animation-delay: 1.3s; }
+            .tech-tag:nth-child(7) { animation-delay: 1.4s; }
+            .tech-tag:nth-child(8) { animation-delay: 1.5s; }
+            .tech-tag:nth-child(9) { animation-delay: 1.6s; }
+            .tech-tag:nth-child(10) { animation-delay: 1.7s; }
+        </style>
+        
+        <!-- JavaScript for animation triggers -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set up the intersection observer for achievement cards
+                const achievementCards = document.querySelectorAll('.achievement-card');
+                const techTags = document.querySelectorAll('.tech-tag');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                // Observe all achievement cards and tech tags
+                achievementCards.forEach(card => {
+                    card.style.animationPlayState = 'paused';
+                    observer.observe(card);
+                });
+                
+                techTags.forEach(tag => {
+                    tag.style.animationPlayState = 'paused';
+                    observer.observe(tag);
+                });
+            });
+        </script>
+    </section>
+</section>
+
+
+
+
+
+
+
+
+
+    <!-- Projects & Research Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Projects & <span class="text-cyan-300">Research</span></span>
+            </span>
+        </h2>
+        <p>Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</p>        
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Featured Research Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Featured <span class="text-cyan-300">Research</span></span>
+            </span>
+        </h2>
+        
+        <!-- Research Papers - Featured Section -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-purple-600"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-cyan-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Research Paper 1 -->
+                <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-cyan-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
+                    <div class="absolute -right-2 -top-2 w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3 text-white group-hover:text-cyan-300 transition-colors duration-300">Deep Learning Models for Classification of Red Blood Cells in Microscopy Images for Anemia Diagnosis</h4>
+                    <p class="text-sm text-cyan-300 mb-3 font-mono">COMPAS 2024 conference</p>
+                    <p class="text-gray-300 mb-4">Research on using deep learning for automated anemia diagnosis through blood cell image analysis.</p>
+                    <a href="https://ieeexplore.ieee.org/document/10797203" target="_blank" class="inline-flex items-center px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors duration-300 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2  0 0 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                            <path d="M9 2v7.5"></path>
+                            <path d="M15 2v7.5"></path>
+                            <path d="M12 2v10l-3-2"></path>
+                            <path d="M12 12l3-2"></path>
+                        </svg>
+                        View on IEEE Xplore
+                    </a>
+                </div>
+                
+                <!-- Research Paper 2 -->
+                <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-cyan-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
+                    <div class="absolute -right-2 -top-2 w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3 text-white group-hover:text-cyan-300 transition-colors duration-300">Revisiting ONE Simulator in IoV Research: Seeing the Forest Through the Trees</h4>
+                    <p class="text-sm text-cyan-300 mb-3 font-mono">IEEE Access 2025 Journal</p>
+                    <p class="text-gray-300 mb-4">Comprehensive analysis of ONE Simulator's application in Internet of Vehicles research.</p>
+                    <a href="https://ieeexplore.ieee.org/document/10929018" target="_blank" class="inline-flex items-center px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors duration-300 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        View on IEEE Xplore
+                    </a>
+                </div>
+            </div>
+        </div>
+
+            </div>
+    </section>
+
+  <!-- Jr. AI Developer Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. AI Developer</span></span>
+            </span>
+        </h2>
+        
+        <!-- Jr. AI Developer | Present | bdCalling IT Ltd. Dhaka, Bangladesh | 07/04/2024 – Present -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- GrowdFx for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                AI
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">GrowdFx</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Improving Mental Health</p>
+                    </div>
+                </div>
+
+                <!-- DateMate for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                AI
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">DateMate</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Find Your Perfect Partner</p>
+                    </div>
+                </div>
+
+                                <!-- Flights Search for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                AI
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Flights Search</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Find the Best Deals Fast</p>
+                    </div>
+                </div>
+
+                                <!-- Tennis RealTime Movement for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                AI
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Tennis RealTime Movement</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+    </section>
+
+<!-- Jr. Web Developer Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. Web Developer</span></span>
+            </span>
+        </h2>
+        
+
+
+<!-- Jr. Web Developer | bdCalling IT Ltd. Dhaka, Bangladesh | 16/03/2024 – 07/04/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- forbyta  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300"> forbyta </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Fruit & Veggie Supplements</p>
+                    </div>
+                </div>
+
+                <!-- CRUISING DUCKS PLUS for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">CRUISING DUCKS PLUS</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Cute duck toys</p>
+                    </div>
+                </div>
+
+                                <!-- Nailbea Nails Search for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Nailbea Nails</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Premium nail products</p>
+                    </div>
+                </div>
+
+                                <!-- proclubzone for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">proclubzone</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Gold & Diamond Jewelry</p>
+                    </div>
+                </div> 
+
+                                                <!-- PERFUME LUXURY for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">PERFUME LUXURY</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">(Premium parfum) Dutch</p>
+                    </div>
+                </div> 
+
+                                                <!-- KST LEATHER for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Web
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">KST LEATHER</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Handcrafted leather goods</p>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+<!-- Jr. Front-End Developer (Label - 05) Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. Front-End Developer (Label - 05)</span></span>
+            </span>
+        </h2>
+        
+
+<!-- Jr. Front-End Developer (Label - 05) | bdCalling IT Ltd. Dhaka, Bangladesh | 03/2024 – 15/03/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- varlo  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">varlo</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">(Fun fish toy) Dutch</p>
+                    </div>
+                </div>
+
+                <!-- azurao  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">azurao</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">(Workout wear) French</p>
+                    </div>
+                </div>
+
+                <!-- SCT Wheels for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">SCT Wheels</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Premium wheels</p>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+    </section>
+
+
+<!-- Jr. Front-End Developer (Label - 01) Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. Front-End Developer (Label - 01)</span></span>
+            </span>
+        </h2>
+        
+
+<!-- Jr. Front-End Developer (Label - 01) | bdCalling IT Ltd. Dhaka, Bangladesh | 02/2024 – 03/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Professional Projects as Jr. Front-End Developer (Label - 01)Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- BIDSERVICE  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">BIDSERVICE</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Engineering Solutions</p>
+                    </div>
+                </div>
+
+                <!-- LorenzoLadena  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">LorenzoLadena</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Premium caps</p>
+                    </div>
+                </div>
+
+       
+                <!-- ACTIVE babys Wheels for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">ACTIVE babys</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Protection pillows</p>
+                    </div>
+                </div>
+                <!-- Luxury D Homes babys Wheels for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Luxury D Homes</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Premium Furniture</p>
+                    </div>
+                </div>
+                <!-- Nomadd Nook for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Nomadd Nook</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Casual dresses</p>
+                    </div>
+                </div>
+                <!-- LumiSkin for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">LumiSkin</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Cosmetic products</p>
+                    </div>
+                </div>
+                <!-- Trueyoualways for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Trueyoualways</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Mental health products</p>
+                    </div>
+                </div>
+                <!-- Billy Bass for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Billy Bass</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">(LED facial therapy) Dutch</p>
+                    </div>
+                </div>
+         <!-- Sahara bronze for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Sahara bronze</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Skincare Products</p>
+                    </div>
+                </div>
+
+
+                <!-- PURPL VEGAN for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">PURPL VEGAN</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Veggie-Flavored Supplements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+<!-- Jr. Front-End Developer Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. Front-End Developer</span></span>
+            </span>
+        </h2>
+        
+
+<!-- Jr. Front-End Developer | bdCalling IT Ltd. Dhaka, Bangladesh | 12/2023 – 02/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- RuBenXD28  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">RuBenXD28</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Women's dresses</p>
+                    </div>
+                </div>
+
+                <!-- INIM for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">INIM</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Men's casual wear</p>
+                    </div>
+                </div>
+
+       
+                <!-- Dromen en Spelen for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Dromen en Spelen</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">(Educational Toys) Dutch</p>
+                    </div>
+                </div>
+                <!-- CHEF ZAY for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">CHEF ZAY</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Food Delivery</p>
+                    </div>
+                </div>
+                <!-- ANCESTRO  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">ANCESTRO</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Casual clothing</p>
+                    </div>
+                </div>
+                <!-- EcoEase Market for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">EcoEase Market</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Eco-friendly products</p>
+                    </div>
+                </div>
+                <!-- ijustpullthestrings for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">ijustpullthestrings</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Special dresses for men and women</p>
+                    </div>
+                </div>
+                <!-- Lucky Fool for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Lucky Fool</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Special dresses for men and women</p>
+                    </div>
+                </div>
+         <!-- Ability Found for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Ability Found</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Collectibles and antiques sourced for sale</p>
+                    </div>
+                </div>
+
+
+                <!-- Well Dog for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Front-End
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Well Dog (Dog Foods)</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">bdCalling IT Ltd. Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Dog Foods</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </section>
+
+
+<!-- Jr. Service Engineer Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Jr. Service Engineer</span></span>
+            </span>
+        </h2>
+      
+
+ <!-- Jr. Service Engineer | aamra technologies limited Dhaka, Bangladesh | 07/2024 – 12/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- TakaPay (Dutch Bangla Bank)  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                 Soft Testing
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">TakaPay</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">aamra technologies limited Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">Dutch Bangla Bank</p>
+                    </div>
+                </div>
+
+                <!-- TakaPay (City Bank) for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Soft Testing
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">TakaPay </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">aamra technologies limited Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">City Bank</p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+<!-- Machine Learning Intern Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Machine Learning Intern</span></span>
+            </span>
+        </h2>
+ 
+
+
+ <!--Machine Learning Intern | CodSoft Kolkata, India | 07/2023 – 08/2023 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Customer Churn Prediction  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                 ML Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Customer Churn Prediction</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">CodSoft Kolkata, India </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+
+                <!-- Spam SMS Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                ML Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Spam SMS Detection </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">CodSoft Kolkata, India </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                ML Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Credit Card Fraud Detection </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">CodSoft Kolkata, India </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Data Science Intern Intern Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Professional Projects as <span class="text-cyan-300">Data Science Intern</span></span>
+            </span>
+        </h2>
+    <!-- Data Science Intern | Designers Do Futuro Dhaka, Bangladesh | 08/2023 – 01/2024 -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Customer Churn Prediction  for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                 D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">A Comprehensive Visualization of TikTok Data</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div>
+
+                <!-- Spam SMS Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Predicting User Churn in Waze: A Machine Learning Approach for Enhanced User Retention Strategies</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">FairFare: NYC TLC's Advanced Fare Estimation App by Automatidata</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                 <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Weather Impact on NYC Subway: A Rainfall Classifier </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                 <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Predicting Survival and Gender on the Titanic: A Classification Analysis </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                 <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Predicting DD: A Study of Iron and Hemoglobin Concentration
+ </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+                 <!-- Credit Card Fraud Detection for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                D S Intern
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Fruit Classification Project: Predicting Fruit Labels with Machine Learning  </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Designers Do Futuro Dhaka, Bangladesh </p>
+                        <p class="text-gray-300">ML Models</p>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+        </div>
+    </section>
+
+
+
+<!-- Academic Projects Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Academic <span class="text-cyan-300"> Projects</span></span>
+            </span>
+        </h2>
+        <!-- Course Projects -->
+        <div class="mb-16">
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-purple-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Hexagon Grid for Projects -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
+                                Capstone
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Revisiting ONE Simulator in IoV Research: Seeing the Forest Through the Trees</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Capstone Project A, B & C</p>
+                        <p class="text-gray-300">Performance evaluation of Internet of Vehicles using ONE Simulator</p>
+                    </div>
+                </div>
+
+
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Frequent Pattern Growth for Mining Patterns</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Data Mining</p>
+                        <p class="text-gray-300">Pattern mining in large datasets using FP-Growth algorithm</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Predicting Cucumber Disease with the Powerful CNN Model</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Machine Learning</p>
+                        <p class="text-gray-300">Disease classification in cucumber plants using Convolutional Neural Networks</p>
+                    </div>
+                </div>
+
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Deep Learning Models for Classification of Red Blood Cells in Microscopy Images for Anemia Diagnosis</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Computer Vision</p>
+                        <p class="text-gray-300">Image recognition system using deep learning techniques</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">RunProphet: Harnessing Machine Learning to Forecast ODI Cricket Scores</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Statistics for Data Science</p>
+                        <p class="text-gray-300">Implementation of secure network protocols for data transfer</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Food-Order-System</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Database Management System</p>
+                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">DreamNest</h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Web Programming</p>
+                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
+                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Tic Tac Teo 5x5 metrics </h4>
+                        <p class="text-sm text-purple-300 mb-3 font-mono">Database Systems</p>
+                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+<!-- Academic Projects Section -->
+     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
+            <span class="relative inline-block">
+                <!-- <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg">shdghgs</span> -->
+                <span class="relative">Online Course <span class="text-cyan-300"> Projects</span></span>
+            </span>
+        </h2>
+        <!-- Online Course Projects -->
+        <div>
+            <div class="relative">
+                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-teal-400"></div>
+                <h3 class="text-1xl font-semibold mb-8 pl-4 text-blue-300">Md. Farhad Billah received the bachelor’s degree in computer science and engineering with a specialization in data science from East West University, Dhaka, in 2024. He is deeply focused on machine learning and artificial intelligence, particularly in designing and analyzing data science models. His research interests include deep learning, data mining, networking, cybersecurity, and image processing.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Cards with Special Effects -->
+                <div class="relative group overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-2 text-white">Coffee Store</h4>
+                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
+                        <p class="text-gray-300">Web application for a coffee shop with online ordering capabilities</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-2 text-white">Water Bottle React</h4>
+                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
+                        <p class="text-gray-300">React application showcasing custom water bottle products with interactive features</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-2 text-white">React Knowledge Café</h4>
+                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
+                        <p class="text-gray-300">Interactive knowledge sharing platform built with React</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-2 text-white">Boi Poka Book Vibe</h4>
+                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
+                        <p class="text-gray-300">Online bookstore application with user reviews and recommendations</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-2 text-white">Pizza Palace Sales Data Analysis</h4>
+                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Ostad</div>
+                        <p class="text-gray-300">Sales prediction using machine learning and deep learning models for pizza restaurant data</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Get In <span class="text-blue-600">Touch</span></h2>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">
+                <!-- Contact Information -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3
+                    >
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:farhadbillah2020@gmail.com" class="text-blue-600 hover:underline">farhadbillah2020@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <a href="tel:+8801704521205" class="text-blue-600 hover:underline">+880 1704 521205</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Address</p>
+                                <p>Unit # H9, The Vantage Main Road, Block A, Banasree, 1212 Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fab fa-linkedin text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="text-blue-600 hover:underline">Md. Farhad Billah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
+                    
+                    <form action="#" method="POST" id="contact-form">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition w-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-xl font-bold">Md. Farhad Billah</p>
+                    <p>AI & Web Developer | Data Scientist</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="hover:text-blue-200 transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="hover:text-blue-200 transition">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="mailto:farhadbillah2020@gmail.com" class="hover:text-blue-200 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <hr class="border-blue-400 my-6">
+            
+            <div class="text-center">
+                <p>&copy; 2025 Md. Farhad Billah. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize particles.js
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false,
+                            "out_mode": "out",anim": {
+                            "bounce": false,      "enable": false,
+                            "attract": { 1,
+                                "enable": false,n": 0.1,
+                                "rotateX": 600,e
+                                "rotateY": 1200
+                            }
+                        }
+                    },  "value": 3,
+                    "interactivity": {om": true,
+                        "detect_on": "canvas",
+                        "events": {": false,
+                            "onhover": {
+                                "enable": true,0.1,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },opacity": 0.4,
+                        "modes": {   "width": 1
+                            "grab": {  },
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1: 2,
+                                } "none",
+                            },
+                            "bubble": {
+                                "distance": 400,ut_mode": "out",
+                                "size": 40,lse,
+                                "duration": 2,
+                                "opacity": 8,e,
+                                "speed": 3  "rotateX": 600,
+                            }, 1200
+                            "repulse": {  }
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },ver": {
+                            "remove": {  "enable": true,
+                                "particles_nb": 2 "grab"
+                            }
+                        }
+                    },,
+                    "retina_detect": true"
+                });
+            }esize": true
+            
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {  "distance": 140,
+                contactForm.addEventListener('submit', function(e) {_linked": {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');  }
+                    this.reset();
+                });
+            }   "distance": 400,
+        });       "size": 40,
+    </script>          "duration": 2,
+</body>: 8,
+</html>            }
+            
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
