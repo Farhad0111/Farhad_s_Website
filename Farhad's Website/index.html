@@ -3,2665 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Farhad Billah - Professional Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>GrowEx Figma Diagram</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            overflow-x: auto;
+            padding: 20px;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+
+        .figma-canvas {
+            min-width: 2400px;
+            min-height: 1600px;
+            position: relative;
+            background: linear-gradient(45deg, #0f0f0f 25%, transparent 25%), 
+                        linear-gradient(-45deg, #0f0f0f 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #0f0f0f 75%), 
+                        linear-gradient(-45deg, transparent 75%, #0f0f0f 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         }
-        
-        .skill-bar {
+
+        .screen {
+            position: absolute;
+            background: #2c2c2c;
+            border: 2px solid #404040;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .screen:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            border-color: #6366f1;
+        }
+
+        .screen-header {
+            background: #404040;
+            padding: 12px 16px;
+            border-radius: 10px 10px 0 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .screen-content {
+            padding: 20px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .navigation {
+            background: #6366f1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 11px;
+        }
+
+        .feature-item {
+            background: #3c3c3c;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border-left: 3px solid #10b981;
+        }
+
+        .quiz-option {
+            background: #4c4c4c;
+            padding: 6px 10px;
+            margin: 4px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: #5c5c5c;
+        }
+
+        .progress-bar {
+            background: #404040;
             height: 8px;
             border-radius: 4px;
-            background-color: #e0e0e0;
+            margin: 12px 0;
+            overflow: hidden;
         }
-        
-        .skill-progress {
+
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981, #34d399);
             height: 100%;
+            width: 10%;
             border-radius: 4px;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
         }
-        
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 18px;
-            top: 32px;
-            height: calc(100% - 32px);
-            width: 2px;
-            background-color: #e5e7eb;
-        }
-        
-        .project-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .floating-btn {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* New animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .delay-100 {
-            animation-delay: 0.1s;
-        }
-        
-        .delay-200 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-300 {
-            animation-delay: 0.3s;
-        }
-        
-        .delay-400 {
-            animation-delay: 0.4s;
-        }
-        
-        /* Gallery styles */
-        .gallery-tab {
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-tab:hover {
-            transform: scale(1.05);
-        }
-        
-        .gallery-tab.active {
-            background-color: #4f46e5;
+
+        .button {
+            background: #6366f1;
             color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 12px;
+            transition: background 0.2s;
         }
-        
-        .gallery-item {
-            transition: all 0.3s ease;
-            transform: scale(1);
+
+        .button:hover {
+            background: #5856eb;
         }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-            z-index: 10;
-        }
-        
-        /* Particle animation */
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        
-        /* Glow effect */
-        .glow {
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
-        }
-        
-        .glow:hover {
-            box-shadow: 0 0 25px rgba(79, 70, 229, 0.8);
-        }
-        
-        /* Wave animation */
-        .wave {
-            animation: wave 2s infinite;
-            transform-origin: 70% 70%;
+
+        .badge {
+            background: #fbbf24;
+            color: #92400e;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            margin: 2px;
             display: inline-block;
         }
-        
-        @keyframes wave {
-            0% { transform: rotate(0deg); }
-            10% { transform: rotate(14deg); }
-            20% { transform: rotate(-8deg); }
-            30% { transform: rotate(14deg); }
-            40% { transform: rotate(-4deg); }
-            50% { transform: rotate(10deg); }
-            60% { transform: rotate(0deg); }
-            100% { transform: rotate(0deg); }
+
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .arrow-right {
+            border-left: 12px solid #6366f1;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .flow-arrow {
+            position: absolute;
+            color: #6366f1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Screen positioning */
+        .home-screen { top: 80px; left: 50px; width: 320px; height: 480px; }
+        .quiz-screen { top: 80px; left: 450px; width: 320px; height: 480px; }
+        .results-screen { top: 80px; left: 850px; width: 320px; height: 480px; }
+        .avatar-screen { top: 80px; left: 1250px; width: 320px; height: 480px; }
+        .agent-screen { top: 600px; left: 50px; width: 320px; height: 400px; }
+        .destination-screen { top: 600px; left: 450px; width: 320px; height: 400px; }
+        .automation-screen { top: 600px; left: 850px; width: 320px; height: 400px; }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .figma-canvas {
+                min-width: 100%;
+                min-height: 2000px;
+            }
+            
+            .screen {
+                position: relative;
+                margin: 20px auto;
+                display: block;
+            }
+            
+            .flow-arrow {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Particle background -->
-    <div id="particles-js"></div>
- 
-    
-
-
-    <!-- Header/Navigation -->
-    <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold flex items-center">
-                    <span class="mr-2">Md. Farhad Billah</span>
-                    <span class="wave text-xl">👋</span>
+<body>
+    <div class="figma-canvas">
+        <div class="title">GrowdFx User Journey Flow</div>
+        
+        <!-- Home Screen -->
+        <div class="screen home-screen">
+            <div class="screen-header">🏠 Home Dashboard</div>
+            <div class="screen-content">
+                <div class="navigation">
+                    <div>📋 Quiz | 📊 Results | 👤 Youth Avatar | 🤖 Agent | 🎯 Destination | ⚙️ Automation</div>
                 </div>
-                <nav class="hidden md:block">
-                    <ul class="flex space-x-8">
-                        <li><a href="#about" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-user mr-1"></i> About</a></li>
-                        <li><a href="#experience" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-briefcase mr-1"></i> Experience</a></li>
-                        <li><a href="#education" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-graduation-cap mr-1"></i> Education</a></li>
-                        <li><a href="#gallery" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-images mr-1"></i> Gallery</a></li>
-                        <li><a href="#skills" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-code mr-1"></i> Skills</a></li>
-                        <li><a href="#projects" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-project-diagram mr-1"></i> Projects</a></li>
-                        <li><a href="#contact" class="hover:text-blue-200 transition flex items-center"><i class="fas fa-envelope mr-1"></i> Contact</a></li>
-                    </ul>
-                </nav>
-                <button class="md:hidden text-2xl glow" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <h3 style="color: #10b981; margin-bottom: 12px;">Start Your Journey</h3>
+                    <p style="color: #9ca3af; font-size: 11px;">Discover your path to personal growth</p>
+                </div>
+                
+                <div class="feature-item">📝 Quiz Funnel</div>
+                <div class="feature-item">🧠 Mental Health Topics</div>
+                <div class="feature-item">🎯 Personalized Results</div>
+                <div class="feature-item">🔗 Tool Integration</div>
+                
+                <button class="button" style="width: 100%;">Begin Assessment</button>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-blue-900" id="mobile-menu">
-            <div class="px-4 py-2">
-                <ul class="space-y-2">
-                    <li><a href="#about" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-user mr-2"></i> About</a></li>
-                    <li><a href="#experience" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-briefcase mr-2"></i> Experience</a></li>
-                    <li><a href="#education" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-graduation-cap mr-2"></i> Education</a></li>
-                    <li><a href="#gallery" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-images mr-2"></i> Gallery</a></li>
-                    <li><a href="#skills" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-code mr-2"></i> Skills</a></li>
-                    <li><a href="#projects" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-project-diagram mr-2"></i> Projects</a></li>
-                    <li><a href="#contact" class="block py-2 hover:bg-blue-800 px-2 rounded flex items-center"><i class="fas fa-envelope mr-2"></i> Contact</a></li>
-                </ul>
+
+        <!-- Quiz Screen -->
+        <div class="screen quiz-screen">
+            <div class="screen-header">📋 Quiz Funnel</div>
+            <div class="screen-content">
+                <h4 style="color: #10b981; margin-bottom: 16px;">What is your biggest pain point?</h4>
+                
+                <div class="quiz-option">🍎 Poor diet</div>
+                <div class="quiz-option">😤 Misbehavior</div>
+                <div class="quiz-option">📚 Lack of organization</div>
+                <div class="quiz-option">⏰ Lack of time management</div>
+                <div class="quiz-option">😴 Lack of interest in class</div>
+                <div class="quiz-option">👥 Peer pressure</div>
+                <div class="quiz-option">💰 Limited resources</div>
+                <div class="quiz-option">📱 Impact of social media</div>
+                
+                <div style="margin-top: 20px;">
+                    <div style="color: #9ca3af; font-size: 11px;">Progress: Step 1/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <button class="button" style="width: 100%;">Continue →</button>
             </div>
         </div>
-    </header>
 
-
-
-
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white"></div>
-            <div class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-white"></div>
-            <div class="absolute bottom-1/4 left-1/3 w-40 h-40 rounded-full bg-white"></div>
-            <div class="absolute bottom-1/3 right-1/4 w-28 h-28 rounded-full bg-white"></div>
+        <!-- Results Screen -->
+        <div class="screen results-screen">
+            <div class="screen-header">📊 Results</div>
+            <div class="screen-content">
+                <h4 style="color: #10b981; margin-bottom: 16px;">Your Improvement Areas</h4>
+                <p style="color: #9ca3af; font-size: 11px; margin-bottom: 16px;">Based on your responses:</p>
+                
+                <div class="feature-item">💆‍♀️ How to practice self-care</div>
+                <div class="feature-item">📋 How to develop organizational skills</div>
+                <div class="feature-item">🌱 How to embrace growth opportunities</div>
+                
+                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Actionable Topics:</h5>
+                <div style="background: #3c3c3c; padding: 12px; border-radius: 6px;">
+                    <div style="margin: 4px 0;">🧘 Self-Care Guide</div>
+                    <div style="margin: 4px 0;">⏰ Time Management Course</div>
+                    <div style="margin: 4px 0;">🎯 Goal-Setting Workshop</div>
+                </div>
+                
+                <button class="button" style="width: 100%;">Explore More</button>
+            </div>
         </div>
 
-
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-    <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Farhad Billah</span></h1>
-        <h2 class="text-2xl md:text-3xl font-semibold mb-6">AI & Web Developer | Data Scientist</h2>
-        <p class="text-lg mb-8">
-            Passionate about solving complex problems with innovative technology solutions. Specializing in AI development, web technologies, and data science.
-        </p>
-        <div class="flex space-x-4">
-            <a href="#contact" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition glow">Contact Me</a>
-            <a href="#projects" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition glow">View Projects</a>
+        <!-- Youth Avatar Screen -->
+        <div class="screen avatar-screen">
+            <div class="screen-header">👤 Youth Avatar</div>
+            <div class="screen-content">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 32px;">👤</div>
+                    <button style="background: #404040; border: none; color: #9ca3af; padding: 4px 8px; border-radius: 4px; font-size: 10px;">Upload/Edit Avatar</button>
+                </div>
+                
+                <h5 style="color: #10b981; margin-bottom: 8px;">Goals:</h5>
+                <div class="feature-item">⏰ Improve time management</div>
+                <div class="feature-item">😌 Reduce stress</div>
+                
+                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Sources:</h5>
+                <div style="font-size: 11px; color: #9ca3af;">
+                    <div>🧠 Mental Health</div>
+                    <div>📈 Industry Benchmarks</div>
+                    <div>✨ Best Practices</div>
+                    <div>📚 Case Studies</div>
+                </div>
+                
+                <div style="margin-top: 16px;">
+                    <div style="color: #9ca3af; font-size: 11px;">Progress: Completed Tasks 3/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Agent Screen -->
+        <div class="screen agent-screen">
+            <div class="screen-header">🤖 AI Agent</div>
+            <div class="screen-content">
+                <div style="background: #3c3c3c; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="color: #10b981; font-size: 11px; margin-bottom: 8px;">💬 Assistant</div>
+                    <div style="font-size: 12px;">"Hello! How can I assist you today?"</div>
+                </div>
+                
+                <input type="text" placeholder="Type your message..." style="width: 100%; padding: 10px; background: #404040; border: 1px solid #5c5c5c; border-radius: 6px; color: white; font-size: 12px; margin-bottom: 12px;">
+                
+                <h5 style="color: #fbbf24; margin-bottom: 8px;">Guided Workflow:</h5>
+                <div style="font-size: 11px; color: #9ca3af;">
+                    <div>1️⃣ Take the Quiz</div>
+                    <div>2️⃣ Review Results</div>
+                    <div>3️⃣ Customize Avatar</div>
+                </div>
+                
+                <h5 style="color: #10b981; margin: 12px 0 8px 0;">Resources:</h5>
+                <div class="feature-item" style="font-size: 11px;">🧠 Mental Health Course</div>
+                <div class="feature-item" style="font-size: 11px;">⏰ Time Management Tips</div>
+            </div>
+        </div>
+
+        <!-- Destination Station Screen -->
+        <div class="screen destination-screen">
+            <div class="screen-header">🎯 Destination Station</div>
+            <div class="screen-content">
+                <h4 style="color: #10b981; margin-bottom: 12px;">🎉 Congratulations!</h4>
+                <p style="color: #9ca3af; font-size: 11px; margin-bottom: 12px;">You've completed the following:</p>
+                
+                <div class="feature-item" style="font-size: 11px;">✅ Improved time management</div>
+                <div class="feature-item" style="font-size: 11px;">✅ Learned self-care techniques</div>
+                
+                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Next Steps:</h5>
+                <div style="background: #3c3c3c; padding: 10px; border-radius: 6px; font-size: 11px;">
+                    <div>📚 Enroll in Advanced Course</div>
+                    <div>👥 Join Community Forum</div>
+                </div>
+                
+                <h5 style="color: #10b981; margin: 16px 0 8px 0;">Badges Earned:</h5>
+                <div>
+                    <span class="badge">⏰ Time Expert</span>
+                    <span class="badge">💆‍♀️ Self-Care Pro</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Automation Screen -->
+        <div class="screen automation-screen">
+            <div class="screen-header">⚙️ Automation</div>
+            <div class="screen-content">
+                <h5 style="color: #10b981; margin-bottom: 12px;">Integration:</h5>
+                <div class="feature-item" style="font-size: 11px;">🎨 Connect with Canva</div>
+                <div class="feature-item" style="font-size: 11px;">💼 Link with LinkedIn</div>
+                
+                <h5 style="color: #fbbf24; margin: 16px 0 8px 0;">Automation Settings:</h5>
+                <div style="background: #3c3c3c; padding: 10px; border-radius: 6px; font-size: 11px;">
+                    <div>📅 Schedule Updates</div>
+                    <div>🔔 Set Reminders</div>
+                </div>
+                
+                <h5 style="color: #ec4899; margin: 16px 0 8px 0;">Help Center:</h5>
+                <div style="font-size: 11px; color: #9ca3af;">
+                    <div>❓ How to Use Automation</div>
+                    <div>💡 FAQs</div>
+                </div>
+                
+                <button class="button" style="width: 100%; margin-top: 12px;">Configure Settings</button>
+            </div>
+        </div>
+
+        <!-- Flow Arrows -->
+        <div class="flow-arrow" style="top: 300px; left: 390px;">→</div>
+        <div class="flow-arrow" style="top: 300px; left: 790px;">→</div>
+        <div class="flow-arrow" style="top: 300px; left: 1190px;">→</div>
+        <div class="flow-arrow" style="top: 580px; left: 200px; transform: rotate(90deg);">→</div>
+        <div class="flow-arrow" style="top: 800px; left: 390px;">→</div>
+        <div class="flow-arrow" style="top: 800px; left: 790px;">→</div>
     </div>
-
-    <div class="md:w-1/2 flex justify-center animate-fade-in delay-200">
-        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl floating-btn">
-            <!-- Image placed inside the circle -->
-            <img src="img/3.jpeg" alt="my image" class="absolute inset-0 w-full h-full object-cover" />
-        </div>
-    </div>
-</div>
-        <!--<div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-            <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Farhad Billah</span></h1>
-                <h2 class="text-2xl md:text-3xl font-semibold mb-6">AI & Web Developer | Data Scientist</h2>
-                <p class="text-lg mb-8">Passionate about solving complex problems with innovative technology solutions. Specializing in AI development, web technologies, and data science.</p>
-                <div class="flex space-x-4">
-                    <a href="#contact" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition glow">Contact Me</a>
-                    <a href="#projects" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition glow">View Projects</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center animate-fade-in delay-200">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-blue-800 rounded-full overflow-hidden border-4 border-white shadow-xl floating-btn">
-                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                        <i class="fas fa-user text-6xl text-blue-900"></i>
-                    </div>
-                </div>
-            </div>
-        </div>-->      
-    </section>
-
-    
-
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-
-
-        <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">About <span class="text-blue-600">Me</span></h2>
-    
-    <div class="flex flex-col md:flex-row items-center animate-fade-in delay-100">
-        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-            <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg glow">
-                <img src="img/2.jpeg" alt="Profile" class="w-full h-full object-cover">
-            </div>
-        </div>
-        <div class="md:w-2/3 md:pl-12">
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div>
-                        <p class="font-medium">Date of Birth:</p>
-                        <p>10/08/2002</p>
-                    </div>
-                    <div>
-                        <p class="font-medium">Mailing Address:</p>
-                        <p>Unit # H9, The Vantage Main Road, Block A, Banasree, 1212 Dhaka, Bangladesh</p>
-                    </div>
-                    <div>
-                        <p class="font-medium">E-Mail:</p>
-                        <p>farhadbillah2020@gmail.com</p>
-                    </div>
-                    <div>
-                        <p class="font-medium">Mobile:</p>
-                        <p>+8801704521205</p>
-                    </div>
-                </div>
-                
-                <h3 class="text-xl font-semibold mb-4">Professional Profiles</h3>
-                <div class="flex flex-wrap gap-3">
-                    <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center hover:bg-gray-700 transition glow">
-                        <i class="fab fa-github mr-2"></i> GitHub
-                    </a>
-                    <a href="https://ieeexplore.ieee.org/author/141334061385538" target="_blank" class="bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-600 transition glow">
-                        <i class="fas fa-book mr-2"></i> IEEE Xplore
-                    </a>
-                    <a href="https://www.hackerrank.com/profile/RunTimeE" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-500 transition glow">
-                        <i class="fab fa-hackerrank mr-2"></i> HackerRank
-                    </a>
-                    <a href="https://codeforces.com/profile/farhadbillah2020" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-red-500 transition glow">
-                        <i class="fas fa-code mr-2"></i> CodeForces
-                    </a>
-                    <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-500 transition glow">
-                        <i class="fab fa-linkedin mr-2"></i> LinkedIn
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="mt-12 bg-gray-50 p-6 rounded-lg shadow-md glow animate-fade-in delay-200">
-        <h3 class="text-xl font-semibold mb-4">References</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Reference 1 -->
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition text-center">
-                <img src="img/arian.avif" alt="Saddam Hossain" class="w-16 h-16 rounded-full mx-auto mb-3">
-                <h4 class="font-bold text-blue-600">Saddam Hossain (Arian)</h4>
-                <p class="text-sm text-gray-600">CEO, Designers do Futuro</p>
-                <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> arian@designersdofuturo.com</p>
-                <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801610003132</p>
-                <a href="http://www.designersdofuturo.com/" target="_blank" class="text-blue-500 hover:underline inline-block mt-2">
-                    <i class="fas fa-globe mr-1"></i> Website
-                </a>
-            </div>
-            <!-- Reference 2 -->
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition text-center">
-                <img src="img/Dr. Maheen Islam.jpg" alt="Dr. Maheen Islam" class="w-16 h-16 rounded-full mx-auto mb-3">
-                <h4 class="font-bold text-blue-600">Dr. Maheen Islam</h4>
-                <p class="text-sm text-gray-600">Associate Professor and Chairperson, Department of Computer Science and Engineering</p>
-                <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> maheen@ewubd.edu</p>
-                <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801715009676</p>
-                <p><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.221</p>
-            </div>
-            <!-- Reference 3 -->
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition text-center">
-                <img src="img/Dr. Taskeed Jabid.jpg" alt="Dr. Taskeed Jabid" class="w-16 h-16 rounded-full mx-auto mb-3">
-                <h4 class="font-bold text-blue-600">Dr. Taskeed Jabid</h4>
-                <p class="text-sm text-gray-600">Associate Professor, Department of Computer Science and Engineering</p>
-                <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> taskeed@ewubd.edu</p>
-                <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801763704545</p>
-                <p><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.258</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-        <!--<div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">About <span class="text-blue-600">Me</span></h2>
-            
-            <div class="flex flex-col md:flex-row items-center animate-fade-in delay-100">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    
-                    
-                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg glow">
-                        <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                            <i class="fas fa-user text-6xl text-blue-600"></i>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <p class="font-medium">Date of Birth:</p>
-                                <p>10/08/2002</p>
-                            </div>
-                            <div>
-                                <p class="font-medium">Mailing Address:</p>
-                                <p>Unit # H9, The Vantage Main Road, Block A, Banasree, 1212 Dhaka, Bangladesh</p>
-                            </div>
-                            <div>
-                                <p class="font-medium">E-Mail:</p>
-                                <p>farhadbillah2020@gmail.com</p>
-                            </div>
-                            <div>
-                                <p class="font-medium">Mobile:</p>
-                                <p>+8801704521205</p>
-                            </div>
-                        </div>
-                        
-                        <h3 class="text-xl font-semibold mb-4">Professional Profiles</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center hover:bg-gray-700 transition glow">
-                                <i class="fab fa-github mr-2"></i> GitHub
-                            </a>
-                            <a href="https://ieeexplore.ieee.org/author/141334061385538" target="_blank" class="bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-600 transition glow">
-                                <i class="fas fa-book mr-2"></i> IEEE Xplore
-                            </a>
-                            <a href="https://www.hackerrank.com/profile/RunTimeE" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-500 transition glow">
-                                <i class="fab fa-hackerrank mr-2"></i> HackerRank
-                            </a>
-                            <a href="https://codeforces.com/profile/farhadbillah2020" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-red-500 transition glow">
-                                <i class="fas fa-code mr-2"></i> CodeForces
-                            </a>
-                            <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-500 transition glow">
-                                <i class="fab fa-linkedin mr-2"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 bg-gray-50 p-6 rounded-lg shadow-md glow animate-fade-in delay-200">
-                <h3 class="text-xl font-semibold mb-4">References</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
-                        <h4 class="font-bold text-blue-600">Saddam Hossain (Arian)</h4>
-                        <p class="text-sm text-gray-600">CEO, Designers do Futuro</p>
-                        <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> arian@designersdofuturo.com</p>
-                        <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801610003132</p>
-                        <a href="http://www.designersdofuturo.com/" target="_blank" class="text-blue-500 hover:underline inline-block mt-2">
-                            <i class="fas fa-globe mr-1"></i> Website
-                        </a>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
-                        <h4 class="font-bold text-blue-600">Dr. Maheen Islam</h4>
-                        <p class="text-sm text-gray-600">Associate Professor and Chairperson, Department of Computer Science and Engineering</p>
-                        <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> maheen@ewubd.edu</p>
-                        <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801715009676</p>
-                        <p><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.221</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
-                        <h4 class="font-bold text-blue-600">Dr. Taskeed Jabid</h4>
-                        <p class="text-sm text-gray-600">Associate Professor, Department of Computer Science and Engineering</p>
-                        <p class="mt-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> taskeed@ewubd.edu</p>
-                        <p><i class="fas fa-phone mr-2 text-blue-500"></i> +8801763704545</p>
-                        <p><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +88-0-2-09666775577 Ext.258</p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    </section>
-
-
-
-
-<!-- Experience Section -->
-<section id="experience" class="py-20 bg-gradient-to-b from-gray-50 to-blue-50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in">Professional <span class="text-blue-600">Experience</span></h2>
-        
-        <div class="max-w-4xl mx-auto">
-            <div class="space-y-12 animate-fade-in delay-100">
-                <!-- AI Developer -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-robot text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. AI Developer</h3>
-                        <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium mt-2 md:mt-0">Present</span>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
-                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 07/04/2025 – Present</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>GrowdFx <span class="text-gray-500 text-sm">(Improving Mental Health)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>DateMate <span class="text-gray-500 text-sm">(Find Your Perfect Partner)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Flights Search <span class="text-gray-500 text-sm">(Find the Best Deals Fast)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Tennis RealTime Movement</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Junior Web Developer -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-laptop-code text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. Web Developer</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
-                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 16/03/2025 – 07/04/2024</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>forbyta <span class="text-gray-500 text-sm">(Fruit & Veggie Supplements)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>CRUISING DUCKS PLUS <span class="text-gray-500 text-sm">(Cute duck toys)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Nailbea Nails <span class="text-gray-500 text-sm">(Premium nail products)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>proclubzone <span class="text-gray-500 text-sm">(Gold & Diamond Jewelry)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>KST LEATHER <span class="text-gray-500 text-sm">(Handcrafted leather goods)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>PERFUME LUXURY <span class="text-gray-500 text-sm">(Premium parfum) <small>Dutch</small></span></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Front-End Developer (Label - 05) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-code text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer (Label - 05)</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
-                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 03/2025 – 15/03/2025</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>varlo <span class="text-gray-500 text-sm">(Fun fish toy) <small>Dutch</small></span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>azurao <span class="text-gray-500 text-sm">(Workout wear) <small>French</small></span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>SCT Wheels <span class="text-gray-500 text-sm">(Premium wheels)</span></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Front-End Developer (Label - 01) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-code text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer (Label - 01)</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
-                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 02/2025 – 03/2025</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>BIDSERVICE <span class="text-gray-500 text-sm">(Engineering Solutions)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>LorenzoLadena <span class="text-gray-500 text-sm">(Premium caps)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>ACTIVE babys <span class="text-gray-500 text-sm">(Protection pillows)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Luxury D Homes <span class="text-gray-500 text-sm">(Premium Furniture)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Nomadd Nook <span class="text-gray-500 text-sm">(Casual dresses)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>LumiSkin <span class="text-gray-500 text-sm">(Cosmetic products)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Trueyoualways <span class="text-gray-500 text-sm">(Mental health products)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Billy Bass <span class="text-gray-500 text-sm">(LED facial therapy) <small>Dutch</small></span></span>
-                            </li>
- <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Sahara bronze <span class="text-gray-500 text-sm">(Skincare Products)</span></span>
-                            </li>
-
-                             <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>PURPL VEGAN <span class="text-gray-500 text-sm">(Veggie-Flavored Supplements)</span></span>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Front-End Developer -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-code text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. Front-End Developer</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">bdCalling IT Ltd.</p>
-                        <a href="https://www.bdcalling.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 12/2024 – 02/2025</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>RuBenXD28 <span class="text-gray-500 text-sm">(Women's dresses)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>INIM <span class="text-gray-500 text-sm">(Men's casual wear)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Dromen en Spelen <span class="text-gray-500 text-sm">(Educational Toys) <small>Dutch</small></span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>CHEF ZAY <span class="text-gray-500 text-sm">(Food Delivery)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>ANCESTRO <span class="text-gray-500 text-sm">(Casual clothing)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>EcoEase Market <span class="text-gray-500 text-sm">(Eco-friendly products)</span></span>
-                            </li>
-
-
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>ijustpullthestrings <span class="text-gray-500 text-sm">(Special dresses for men and women)</span></span>
-                            </li>
-
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Lucky Fool <span class="text-gray-500 text-sm">(Special dresses for men and women)</span></span>
-                            </li>
-
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Ability Found <span class="text-gray-500 text-sm">(Collectibles and antiques sourced for sale)</span></span>
-                            </li>
-
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Well Dog <span class="text-gray-500 text-sm">(Dog Foods)</span></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Junior Service Engineer -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-cogs text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Jr. Service Engineer</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">aamra technologies limited</p>
-                        <a href="https://www.aamratechnologies.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 07/2024 – 12/2024</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>TakaPay <span class="text-gray-500 text-sm">(Dutch Bangla Bank)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>TakaPay <span class="text-gray-500 text-sm">(City Bank)</span></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Machine Learning Intern -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-brain text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Machine Learning Intern</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">CodSoft</p>
-                        <a href="https://www.codsoft.in" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Kolkata, India • 07/2024 – 08/2025</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Customer Churn Prediction <span class="text-gray-500 text-sm">(ML Models)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Spam SMS Detection <span class="text-gray-500 text-sm">(ML Models)</span></span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Credit Card Fraud Detection <span class="text-gray-500 text-sm">(ML Models)</span></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Data Science Intern -->
-                <div class="bg-white p-8 rounded-xl shadow-lg relative pl-20 timeline-item hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
-                    <div class="absolute left-6 top-8 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white floating-btn">
-                        <i class="fas fa-chart-line text-lg"></i>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <h3 class="text-2xl font-bold text-gray-800">Data Science Intern</h3>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <p class="text-gray-700 font-medium">Designers Do Futuro</p>
-                        <a href="https://www.designersdofuturo.com" target="_blank" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-5">Dhaka, Bangladesh • 08/2023 – 01/2024</p>
-                    <div class="bg-gray-50 p-5 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-                        <h4 class="font-semibold mb-3 text-lg text-gray-800">Projects:</h4>
-                        <ul class="grid grid-cols-1 gap-2">
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>A Comprehensive Visualization of TikTok Data</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Predicting User Churn in Waze: A Machine Learning Approach for Enhanced User Retention Strategies</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>FairFare: NYC TLC's Advanced Fare Estimation App by Automatidata</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Weather Impact on NYC Subway: A Rainfall Classifier</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Predicting Survival and Gender on the Titanic: A Classification Analysis</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Predicting DD: A Study of Iron and Hemoglobin Concentration</span>
-                            </li>
-                            <li class="flex items-center">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                <span>Fruit Classification Project: Predicting Fruit Labels with Machine Learning</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Vertical timeline line -->
-    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 top-0 z-0"></div>
-    
-    <!-- Add some animations and interactive elements -->
-    <style>
-        .timeline-item {
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .floating-btn {
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        .glow {
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .glow:hover {
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-        }
-        
-        /* Add smooth fade-in animations */
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in forwards;
-        }
-        
-        .delay-100 {
-            animation-delay: 0.1s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-    
-    <!-- Simple JavaScript for interaction -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            // Add an observer to add animation when elements come into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            timelineItems.forEach(item => {
-                observer.observe(item);
-            });
-        });
-    </script>
-</section>
-    
-
-
-
-    <!-- Education Section -->
-    <section id="education" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">
-            Educational <span class="text-blue-600">Qualifications</span>
-        </h2>
-
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">
-            <!-- BSc in CSE -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500 glow">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-xl font-semibold">BSc in CSE (Major: Data Science)</h3>
-                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">07/2020 – 05/2024</span>
-                </div>
-                <p class="text-gray-600 mb-2">
-                    <a href="https://www.ewubd.edu/" target="_blank" class="text-blue-600 hover:underline">East West University</a>
-                </p>
-                <p class="text-gray-700 font-medium">CGPA: 3.08 out of 4.0</p>
-            </div>
-
-            <!-- Higher Secondary -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-green-500 glow">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-xl font-semibold">Higher Secondary School Certificate</h3>
-                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">2019</span>
-                </div>
-                <p class="text-gray-600 mb-2">
-                    <a href="https://sbgc.gov.bd/" target="_blank" class="text-green-600 hover:underline">Shahid Buddhijibi Govt. College</a>
-                </p>
-                <p class="text-gray-700 font-medium">GPA: 4.92 out of 5.0</p>
-            </div>
-
-            <!-- Secondary School -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-purple-500 glow">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-xl font-semibold">Secondary School Certificate</h3>
-                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-medium">2017</span>
-                </div>
-                <p class="text-gray-600 mb-2">
-                    <a href="https://www.harimohan.edu.bd/" target="_blank" class="text-purple-600 hover:underline">Harimohan Govt. High School</a>
-                </p>
-                <p class="text-gray-700 font-medium">GPA: 5.0 out of 5.0</p>
-            </div>
-
-            <!-- Online Courses -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-yellow-500 glow">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-xl font-semibold">Online Courses</h3>
-                </div>
-                <ul class="space-y-2">
-                    <li>
-                        <p class="font-medium">
-                            <a href="https://www.programming-hero.com/" target="_blank" class="text-yellow-600 hover:underline">Programming Hero (Label - 01)</a>
-                        </p>
-                        <p class="text-sm text-gray-600">06/2024 - 02/2025</p>
-                    </li>
-                    <li>
-                        <p class="font-medium">
-                            <a href="https://ostad.app/" target="_blank" class="text-yellow-600 hover:underline">Ostad</a>
-                        </p>
-                        <p class="text-sm text-gray-600">06/2024 - 12/2024</p>
-                    </li>
-                    <li>
-                        <p class="font-medium">
-                            <a href="https://www.programming-hero.com/" target="_blank" class="text-yellow-600 hover:underline">Programming Hero (Label - 02)</a>
-                        </p>
-                        <p class="text-sm text-gray-600">04/2025 - Present</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-    <!--<section id="education" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Educational <span class="text-blue-600">Qualifications</span></h2>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">-->
-                <!-- BSc in CSE -->
-                <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500 glow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-semibold">BSc in CSE (Major: Data Science)</h3>
-                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">07/2020 – 05/2024</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">East West University</p>
-                    <p class="text-gray-700 font-medium">CGPA: 3.08 out of 4.0</p>
-                </div>-->
-                
-                <!-- Higher Secondary -->
-                <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-green-500 glow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-semibold">Higher Secondary School Certificate</h3>
-                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">2019</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Shahid Buddhijibi Govt. College</p>
-                    <p class="text-gray-700 font-medium">GPA: 4.92 out of 5.0</p>
-                </div>-->
-                
-                <!-- Secondary School -->
-                <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-purple-500 glow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-semibold">Secondary School Certificate</h3>
-                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-medium">2017</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Harimohan Govt. High School</p>
-                    <p class="text-gray-700 font-medium">GPA: 5.0 out of 5.0</p>
-                </div>-->
-                
-                <!-- Online Courses -->
-                <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-yellow-500 glow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-semibold">Online Courses</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li>
-                            <p class="font-medium">Programming Hero (Label - 01)</p>
-                            <p class="text-sm text-gray-600">06/2024 - 02/2025</p>
-                        </li>
-                        <li>
-                            <p class="font-medium">Ostad</p>
-                            <p class="text-sm text-gray-600">06/2024 - 12/2024</p>
-                        </li>
-                        <li>
-                            <p class="font-medium">Programming Hero (Label - 02)</p>
-                            <p class="text-sm text-gray-600">04/2025 - Present</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
-
-
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Technical <span class="text-blue-600">Skills</span></h2>
-            
-            <div class="max-w-4xl mx-auto animate-fade-in delay-100">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Programming Languages -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-code mr-2 text-blue-500"></i> Programming Languages
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Python</span>
-                                    <span class="text-sm text-gray-600">Expert</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">C</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">C++</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">JavaScript</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">PHP</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 50%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Java</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 40%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Web Development -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-globe mr-2 text-blue-500"></i> Web Development
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">HTML</span>
-                                    <span class="text-sm text-gray-600">Expert</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">CSS</span>
-                                    <span class="text-sm text-gray-600">Expert</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Tailwind CSS</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">ReactJS</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">NodeJS</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 50%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">FastAPI</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 40%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Data Science & AI -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-brain mr-2 text-blue-500"></i> Data Science & AI
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Data Analysis</span>
-                                    <span class="text-sm text-gray-600">Expert</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Deep Learning</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Machine Learning</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Data Mining</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Data collection</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                                                        <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">NLP</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">LLMs</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-
-                    <!-- Database -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-database mr-2 text-blue-500"></i> Database
-                        </h3>
-                        <div class="space-y-4">
-
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">MongoDB</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">MySQL</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 50%"></div>
-                                </div>
-                            </div>
-
-
-                            <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-tools mr-2 text-blue-500"></i> Other Skills
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Microsoft Office</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Animaker</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Canva</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">AutoCAD</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 50%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        </div>
-                    </div>
-
-
-
-
-                    <!-- Other Skills -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md glow">
-                        <!--<h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-tools mr-2 text-blue-500"></i> Other Skills
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Microsoft Office</span>
-                                    <span class="text-sm text-gray-600">Advanced</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Animaker</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Canva</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">AutoCAD</span>
-                                    <span class="text-sm text-gray-600">Intermediate</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 50%"></div>
-                                </div>
-                            </div>
-                        </div>-->
-
-
-                                                
-                        <h3 class="text-xl font-semibold mt-6 mb-4 flex items-center">
-                            <i class="fas fa-language mr-2 text-blue-500"></i> Language Skills
-                        </h3>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Bengali</span>
-                                <span class="text-sm text-gray-600">Native</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">English</span>
-                                <span class="text-sm text-gray-600">B2 Level</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                            <div class="text-sm text-gray-600 mt-1">
-                                Listening (B2), Reading (B2), Writing (B2) & Speaking (B2)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <section class="w-full max-w-3xl mx-auto p-5 bg-gray-100">
-  <div class="relative bg-gradient-to-br from-white to-gray-100 rounded-2xl p-8 pt-10 shadow-lg border border-white/80 overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400"></div>
-    <div class="flex items-center mb-8 relative">
-      <div class="mr-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center shadow-md animate-pulse">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-          <path d="M4 22h16"></path>
-          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-          <path d="M9 2v7.5"></path>
-          <path d="M15 2v7.5"></path>
-          <path d="M12 2v10l-3-2"></path>
-          <path d="M12 12l3-2"></path>
-        </svg>
-      </div>
-      <h2 class="text-2xl font-bold text-gray-800 tracking-wide">Datathon Achievements</h2>
-      <div class="absolute bottom-[-10px] left-16 w-32 h-1 bg-gradient-to-r from-yellow-400 to-transparent"></div>
-    </div>
-
-    <ul class="mt-5">
-      <li class="bg-white/60 mb-5 rounded-xl p-5 border-l-4 border-yellow-400 shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
-        <div class="flex items-center text-lg font-semibold text-gray-700 mb-2">
-          <span class="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 text-white text-xs flex items-center justify-center mr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="7"></circle>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-            </svg>
-          </span>
-          Best Campus Ambassador of Robo Tech Valley
-        </div>
-        <div class="flex items-center text-sm text-gray-600 ml-9">
-          <svg class="w-4 h-4 mr-1 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          05/2021 – 07/2021
-          <svg class="w-4 h-4 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-          East West University
-        </div>
-      </li>
-      
-      <li class="bg-white/60 mb-5 rounded-xl p-5 border-l-4 border-yellow-400 shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
-        <div class="flex items-center text-lg font-semibold text-gray-700 mb-2">
-          <span class="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 text-white text-xs flex items-center justify-center mr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
-            </svg>
-          </span>
-          6th Place Robi Datathon 3.0 Qualifier
-        </div>
-        <div class="flex items-center text-sm text-gray-600 ml-9">
-          <svg class="w-4 h-4 mr-1 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          2024
-          <svg class="w-4 h-4 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-          Organized by Robi
-        </div>
-      </li>
-    </ul>
-    
-    <!-- Decorative sparkles -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite] top-[20%] left-[10%]"></div>
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite_0.5s] top-[40%] left-[80%]"></div>
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite_1s] top-[70%] left-[30%]"></div>
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite_1.5s] top-[15%] left-[60%]"></div>
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite_2s] top-[60%] left-[70%]"></div>
-      <div class="absolute w-5 h-5 rounded-full bg-gradient-radial from-yellow-300/80 to-transparent animate-[sparkle_3s_ease-in-out_infinite_2.5s] top-[80%] left-[20%]"></div>
-    </div>
-  </div>
-
-  <script>
-    // Add random floating sparkle effect
-    function createSparkles() {
-      const sparklesContainer = document.querySelector('.pointer-events-none');
-      const numSparkles = 6;
-      
-      for (let i = 0; i < numSparkles; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.classList.add('absolute', 'w-5', 'h-5', 'rounded-full', 'bg-gradient-radial', 'from-yellow-300/80', 'to-transparent', 'animate-[sparkle_3s_ease-in-out_infinite]');
-        
-        // Random position
-        const top = Math.random() * 100;
-        const left = Math.random() * 100;
-        
-        // Random animation delay
-        const delay = Math.random() * 3;
-        
-        sparkle.style.top = `${top}%`;
-        sparkle.style.left = `${left}%`;
-        sparkle.style.animationDelay = `${delay}s`;
-        
-        sparklesContainer.appendChild(sparkle);
-      }
-    }
-    
-    // Create sparkles on page load
-    window.addEventListener('load', createSparkles);
-  </script>
-</section>
-
-<!--<style>
-@keyframes sparkle {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-</style>-->
-
-
-    <!-- Projects Section -->
-     <section id="projects" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
-    <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-16 tracking-tight">
-            <span class="relative inline-block">
-                <span class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 blur-sm rounded-lg"></span>
-                <span class="relative">Projects & <span class="text-cyan-300">Research</span></span>
-            </span>
-        </h2>
-        
-        <!-- Research Papers - Featured Section -->
-        <div class="mb-16">
-            <div class="relative">
-                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-purple-600"></div>
-                <h3 class="text-3xl font-semibold mb-8 pl-4 text-cyan-300">Featured Research</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Research Paper 1 -->
-                <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-cyan-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
-                    <div class="absolute -right-2 -top-2 w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-3 text-white group-hover:text-cyan-300 transition-colors duration-300">Deep Learning Models for Classification of Red Blood Cells in Microscopy Images for Anemia Diagnosis</h4>
-                    <p class="text-sm text-cyan-300 mb-3 font-mono">COMPAS 2024 conference</p>
-                    <p class="text-gray-300 mb-4">Research on using deep learning for automated anemia diagnosis through blood cell image analysis.</p>
-                    <a href="https://ieeexplore.ieee.org/document/10797203" target="_blank" class="inline-flex items-center px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors duration-300 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        View on IEEE Xplore
-                    </a>
-                </div>
-                
-                <!-- Research Paper 2 -->
-                <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-cyan-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
-                    <div class="absolute -right-2 -top-2 w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-3 text-white group-hover:text-cyan-300 transition-colors duration-300">Revisiting ONE Simulator in IoV Research: Seeing the Forest Through the Trees</h4>
-                    <p class="text-sm text-cyan-300 mb-3 font-mono">IEEE Access 2025 Journal</p>
-                    <p class="text-gray-300 mb-4">Comprehensive analysis of ONE Simulator's application in Internet of Vehicles research.</p>
-                    <a href="https://ieeexplore.ieee.org/document/10929018" target="_blank" class="inline-flex items-center px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors duration-300 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        View on IEEE Xplore
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Course Projects -->
-        <div class="mb-16">
-            <div class="relative">
-                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 to-pink-500"></div>
-                <h3 class="text-3xl font-semibold mb-8 pl-4 text-purple-300">Academic Projects</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Hexagon Grid for Projects -->
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
-                            <div class="absolute transform rotate-45 bg-purple-500 text-white font-bold text-xs py-1 right-[-35px] top-[15px] w-[120px] text-center">
-                                Capstone
-                            </div>
-                        </div>
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Revisiting ONE Simulator in IoV Research: Seeing the Forest Through the Trees</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Capstone Project A, B & C</p>
-                        <p class="text-gray-300">Performance evaluation of Internet of Vehicles using ONE Simulator</p>
-                    </div>
-                </div>
-
-
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Frequent Pattern Growth for Mining Patterns</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Data Mining</p>
-                        <p class="text-gray-300">Pattern mining in large datasets using FP-Growth algorithm</p>
-                    </div>
-                </div>
-                
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Predicting Cucumber Disease with the Powerful CNN Model</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Machine Learning</p>
-                        <p class="text-gray-300">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                </div>
-                
-
-
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Deep Learning Models for Classification of Red Blood Cells in Microscopy Images for Anemia Diagnosis</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Computer Vision</p>
-                        <p class="text-gray-300">Image recognition system using deep learning techniques</p>
-                    </div>
-                </div>
-                
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">RunProphet: Harnessing Machine Learning to Forecast ODI Cricket Scores</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Statistics for Data Science</p>
-                        <p class="text-gray-300">Implementation of secure network protocols for data transfer</p>
-                    </div>
-                </div>
-                
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Food-Order-System</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Database Management System</p>
-                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
-                    </div>
-                </div>
-                
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">DreamNest</h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Web Programming</p>
-                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
-                    </div>
-                </div>
-                
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-50 group-hover:opacity-70 blur transition-all duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 rounded-xl h-full border border-gray-700 hover:border-purple-400 transition-all duration-300">
-                        <h4 class="text-lg font-semibold mb-2 text-white group-hover:text-purple-300 transition-colors duration-300">Tic Tac Teo 5x5 metrics </h4>
-                        <p class="text-sm text-purple-300 mb-3 font-mono">Database Systems</p>
-                        <p class="text-gray-300">Framework for optimizing database queries and operations</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <!-- Online Course Projects -->
-        <div>
-            <div class="relative">
-                <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-teal-400"></div>
-                <h3 class="text-3xl font-semibold mb-8 pl-4 text-blue-300">Online Course Projects</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project Cards with Special Effects -->
-                <div class="relative group overflow-hidden rounded-xl">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
-                        <h4 class="text-lg font-semibold mb-2 text-white">Coffee Store</h4>
-                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
-                        <p class="text-gray-300">Web application for a coffee shop with online ordering capabilities</p>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </div>
-                </div>
-                
-                <div class="relative group overflow-hidden rounded-xl">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
-                        <h4 class="text-lg font-semibold mb-2 text-white">Water Bottle React</h4>
-                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
-                        <p class="text-gray-300">React application showcasing custom water bottle products with interactive features</p>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </div>
-                </div>
-                
-                <div class="relative group overflow-hidden rounded-xl">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
-                        <h4 class="text-lg font-semibold mb-2 text-white">React Knowledge Café</h4>
-                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
-                        <p class="text-gray-300">Interactive knowledge sharing platform built with React</p>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </div>
-                </div>
-                
-                <div class="relative group overflow-hidden rounded-xl">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
-                        <h4 class="text-lg font-semibold mb-2 text-white">Boi Poka Book Vibe</h4>
-                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Programming Hero (Label - 01)</div>
-                        <p class="text-gray-300">Online bookstore application with user reviews and recommendations</p>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </div>
-                </div>
-                
-                <div class="relative group overflow-hidden rounded-xl">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative bg-gray-800/90 p-6 h-full border border-gray-700 group-hover:border-transparent transition-all duration-300 rounded-xl">
-                        <h4 class="text-lg font-semibold mb-2 text-white">Pizza Palace Sales Data Analysis</h4>
-                        <div class="inline-block px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs mb-3 font-mono">Ostad</div>
-                        <p class="text-gray-300">Sales prediction using machine learning and deep learning models for pizza restaurant data</p>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </div>
-                </div>
-                
-                <!--<div class="relative group col-span-1 lg:col-span-3">
-                    <div class="bg-gradient-to-br from-blue-500/20 to-teal-400/20 p-6 rounded-xl border border-blue-900/50 text-center">
-                        <p class="text-blue-300 mb-4">Interested in collaborating or learning more about my projects?</p>
-                        <a href="#contact" class="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 transition-all duration-300 text-white font-medium">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            Get in touch
-                        </a>
-                    </div>
-                </div>-->
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <!--<section id="projects" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Projects & <span class="text-blue-600">Research</span></h2>-->
-                    
-                    <!-- Achievements -->
-                    <!--<div class="bg-white p-6 rounded-lg shadow-md relative pl-16 timeline-item glow">
-                        <div class="absolute left-4 top-4 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center text-white floating-btn">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Datathon Achievements</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li>
-                                <span class="font-medium">Best Campus Ambassador of Robo Tech Valley</span>
-                                <p class="text-sm text-gray-600">05/2021 – 07/2021, East West University</p>
-                            </li>
-                            <li>
-                                <span class="font-medium">6th Place Robi Datathon 3.0 Qualifier</span>
-                                <p class="text-sm text-gray-600">2024, Organized by Robi</p>
-                            </li>
-                        </ul>
-                    </div>-->
-
-
-
-
-            <!--<div class="mb-12 animate-fade-in delay-100">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Professional Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">--->
-                    <!-- AI Developer Projects -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white mr-3 floating-btn">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold">AI Developer Projects</h4>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Dating Apps</li>
-                            <li>Flights Search</li>
-                            <li>Tennis Realtime Movement</li>
-                        </ul>
-                    </div>-->
-                    
-                    <!-- Web Developer Projects -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white mr-3 floating-btn">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold">Web Developer Projects</h4>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>forbyta</li>
-                            <li>CRUISING DUCKS PLUS</li>
-                            <li>Nailbea Nails (5 Star)</li>
-                            <li>proclubzone</li>
-                            <li>KST LEATHER EMBROIDERY PERFUME LUXURY</li>
-                        </ul>
-                    </div>-->
-                    
-                    <!-- Label - 05 Projects -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white mr-3 floating-btn">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold">Label - 05 Projects</h4>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>varlo (Dutch Language)</li>
-                            <li>azurao (French language)(4.3 Star)</li>
-                            <li>SCT Wheels</li>
-                        </ul>
-                    </div>-->
-                    
-                    <!-- More project cards can be added similarly -->
-                <!--</div>
-            </div>-->
-            
-            <!--<div class="mb-12 animate-fade-in delay-200">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Internship Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">-->
-                    <!-- CodSoft Projects -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white mr-3 floating-btn">
-                                <i class="fas fa-laptop-medical"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold">CodSoft (Machine Learning Intern)</h4>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Customer Churn Prediction using different types of Machine Learning models</li>
-                            <li>Spam SMS Detection using different types of Machine Learning Models</li>
-                            <li>Credit Card Fraud Detection using different types of Machine Learning models</li>
-                        </ul>
-                    </div>-->
-                    
-                    <!-- Designers Do Futuro Projects -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white mr-3 floating-btn">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold">Designers Do Futuro (Data Science Intern)</h4>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>A Comprehensive Visualization of TikTok Data</li>
-                            <li>Predicting User Churn in Waze: A Machine Learning Approach for Enhanced User Retention Strategies</li>
-                            <li>FairFare: NYC TLC's Advanced Fare Estimation App by Automatidata</li>
-                            <li>Weather Impact on NYC Subway: A Rainfall Classifier</li>
-                            <li>Predicting Survival and Gender on the Titanic: A Classification Analysis</li>
-                            <li>Predicting DD: A Study of Iron and Hemoglobin Concentration</li>
-                            <li>Fruit Classification Project: Predicting Fruit Labels with Machine Learning</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>-->
-            
-            <!--<div class="animate-fade-in delay-400">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Research Papers</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">-->
-                    <!-- Research Paper 1 -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Deep Learning Models for Classification of Red Blood Cells in Microscopy Images for Anemia Diagnosis</h4>
-                        <p class="text-sm text-gray-600 mb-3">COMPAS 2024 conference</p>
-                        <p class="text-gray-700 mb-3">Research on using deep learning for automated anemia diagnosis through blood cell image analysis.</p>
-                        <a href="https://ieeexplore.ieee.org/document/10797203" target="_blank" class="text-blue-600 hover:underline inline-flex items-center">
-                            <i class="fas fa-external-link-alt mr-1"></i> View on IEEE Xplore
-                        </a>
-                    </div>-->
-                    
-                    <!-- Research Paper 2 -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Revisiting ONE Simulator in IoV Research: Seeing the Forest Through the Trees</h4>
-                        <p class="text-sm text-gray-600 mb-3">IEEE Access 2025 Journal</p>
-                        <p class="text-gray-700 mb-3">Comprehensive analysis of ONE Simulator's application in Internet of Vehicles research.</p>
-                        <a href="https://ieeexplore.ieee.org/document/10929018" target="_blank" class="text-blue-600 hover:underline inline-flex items-center">
-                            <i class="fas fa-external-link-alt mr-1"></i> View on IEEE Xplore
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="mb-12 animate-fade-in delay-300">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Course Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">-->
-                    <!-- Course Project Cards -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Revisiting ONE Simulator for the Performance Evaluation of IoV</h4>
-                        <p class="text-sm text-gray-600 mb-3">Capstone Project A, B & C</p>
-                        <p class="text-gray-700">Performance evaluation of Internet of Vehicles using ONE Simulator</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Frequent Pattern Growth for Mining Patterns in Massive Datasets</h4>
-                        <p class="text-sm text-gray-600 mb-3">Data Mining</p>
-                        <p class="text-gray-700">Pattern mining in large datasets using FP-Growth algorithm</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Predicting Cucumber Disease with CNN Model</h4>
-                        <p class="text-sm text-gray-600 mb-3">Machine Learning</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Predicting Cucumber Disease with CNN Model</h4>
-                        <p class="text-sm text-gray-600 mb-3">Machine Learning</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Predicting Cucumber Disease with CNN Model</h4>
-                        <p class="text-sm text-gray-600 mb-3">Machine Learning</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Predicting Cucumber Disease with CNN Model</h4>
-                        <p class="text-sm text-gray-600 mb-3">Machine Learning</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                  
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Predicting Cucumber Disease with CNN Model</h4>
-                        <p class="text-sm text-gray-600 mb-3">Machine Learning</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>                    
-                
-                </div>
-            </div>
-            
-
-
-
-
-           <div class="mb-12 animate-fade-in delay-300">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Online Course Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">-->
-                    <!-- Course Project Cards -->
-                    <!--<div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Coffee Store</h4>
-                        <p class="text-sm text-gray-600 mb-3">Programming Hero (Label - 01)</p>
-                        <p class="text-gray-700">Performance evaluation of Internet of Vehicles using ONE Simulator</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Water Bottle react</h4>
-                        <p class="text-sm text-gray-600 mb-3">Programming Hero (Label - 01)</p>
-                        <p class="text-gray-700">Pattern mining in large datasets using FP-Growth algorithm</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">React Knowledge Café</h4>
-                        <p class="text-sm text-gray-600 mb-3">Programming Hero (Label - 01)</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Boi Poka Book Vibe</h4>
-                        <p class="text-sm text-gray-600 mb-3">Programming Hero (Label - 01)</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>
-                                       
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md project-card transition duration-300 glow">
-                        <h4 class="text-lg font-semibold mb-2">Pizza Palace Sales Data Analysis and Prediction Using Machine Learning and Deep Learning Models</h4>
-                        <p class="text-sm text-gray-600 mb-3">Ostad</p>
-                        <p class="text-gray-700">Disease classification in cucumber plants using Convolutional Neural Networks</p>
-                    </div>                    
-                
-                </div>
-            </div>
-
-
-        </div>
-    </section>-->
-    <!-- Gallery Section -->
-    
-<section id="gallery" class="py-16 bg-gray-900 text-white">
-    <div class="container mx-auto px-6">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 animate-fade-in">
-            Life <span class="text-blue-400">Journey</span>
-        </h2>
-
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
-            <!-- Vertical Tabs -->
-            <div class="flex md:flex-col flex-row justify-center md:justify-start gap-3 md:w-1/4">
-                <button class="gallery-tab px-6 py-3 bg-gray-800 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 focus:outline-none text-left" data-tab="primary">
-                    <i class="fas fa-school mr-2"></i> Primary
-                </button>
-                <button class="gallery-tab px-6 py-3 bg-gray-800 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 focus:outline-none text-left" data-tab="highschool">
-                    <i class="fas fa-graduation-cap mr-2"></i> High School
-                </button>
-                <button class="gallery-tab px-6 py-3 bg-gray-800 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 focus:outline-none text-left" data-tab="college">
-                    <i class="fas fa-university mr-2"></i> College
-                </button>
-                <button class="gallery-tab px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-all duration-300 focus:outline-none active text-left" data-tab="university">
-                    <i class="fas fa-user-graduate mr-2"></i> University
-                </button>
-            </div>
-
-            <!-- Content Area -->
-            <div class="md:w-3/4">
-                <!-- Image Stage -->
-                <div class="relative w-full h-80 md:h-[28rem] bg-gray-800 rounded-xl overflow-hidden mb-8 shadow-2xl transition-all duration-500">
-                    <div id="stage-image" class="w-full h-full bg-cover bg-center transition-opacity duration-700" style="background-image: url('https://via.placeholder.com/1200x600?text=Campus');"></div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 flex items-end p-6">
-                        <h3 id="stage-title" class="text-2xl md:text-3xl font-bold">Campus</h3>
-                    </div>
-                </div>
-
-                <!-- Gallery Carousel -->
-                <div class="gallery-content-container">
-                    <!-- Primary School -->
-                    <div class="gallery-content hidden" data-content="primary">
-                        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=School+Days" data-title="School Days">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">School Days</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=First+Day" data-title="First Day">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">First Day</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Sports+Day" data-title="Sports Day">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Sports Day</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- High School -->
-                    <div class="gallery-content hidden" data-content="highschool">
-                        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Graduation" data-title="Graduation">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Graduation</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Science+Fair" data-title="Science Fair">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Science Fair</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Friends" data-title="Friends">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Friends</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- College -->
-                    <div class="gallery-content hidden" data-content="college">
-                        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Orientation" data-title="Orientation">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Orientation</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Debate" data-title="Debate">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Debate</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Festival" data-title="Festival">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Festival</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- University -->
-                    <div class="gallery-content" data-content="university">
-                        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Campus" data-title="Campus">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Campus</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Hackathon" data-title="Hackathon">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Hackathon</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Graduation" data-title="Graduation">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Graduation</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Presentation" data-title="Presentation">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Presentation</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Friends" data-title="Friends">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Friends</p>
-                            </div>
-                            <div class="gallery-item flex-none w-40 bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" data-image="https://via.placeholder.com/1200x600?text=Research" data-title="Research">
-                                <div class="w-full h-32 bg-gray-700 rounded flex items-center justify-center">
-                                    <i class="fas fa-image text-2xl text-gray-400"></i>
-                                </div>
-                                <p class="mt-2 text-center text-sm">Research</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inline Tailwind CSS Animations and Scrollbar Styling -->
-    <style>
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fade-in 0.8s ease-out;
-        }
-        /* Custom Scrollbar */
-        .scrollbar-thin {
-            scrollbar-width: thin;
-        }
-        .scrollbar-thin::-webkit-scrollbar {
-            height: 8px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-            background: #2d3748;
-            border-radius: 4px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background: #4a5568;
-            border-radius: 4px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-            background: #718096;
-        }
-    </style>
-
-    <!-- Inline JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.gallery-tab');
-            const contents = document.querySelectorAll('.gallery-content');
-            const stageImage = document.getElementById('stage-image');
-            const stageTitle = document.getElementById('stage-title');
-
-            // Handle tab clicks
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Update tab styles
-                    tabs.forEach(t => {
-                        t.classList.remove('bg-blue-500', 'text-white', 'active');
-                        t.classList.add('bg-gray-800', 'text-white');
-                    });
-                    tab.classList.add('bg-blue-500', 'text-white', 'active');
-                    tab.classList.remove('bg-gray-800');
-
-                    // Show corresponding content
-                    const tabName = tab.getAttribute('data-tab');
-                    contents.forEach(content => {
-                        content.classList.add('hidden');
-                        if (content.getAttribute('data-content') === tabName) {
-                            content.classList.remove('hidden');
-                            // Set default stage image to the first item in the tab
-                            const firstItem = content.querySelector('.gallery-item');
-                            if (firstItem) {
-                                stageImage.style.backgroundImage = `url('${firstItem.getAttribute('data-image')}')`;
-                                stageTitle.textContent = firstItem.getAttribute('data-title');
-                            }
-                        }
-                    });
-                });
-            });
-
-            // Handle gallery item clicks
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach(item => {
-                item.addEventListener('click', () => {
-                    const imageUrl = item.getAttribute('data-image');
-                    const title = item.getAttribute('data-title');
-                    stageImage.style.backgroundImage = `url('${imageUrl}')`;
-                    stageTitle.textContent = title;
-                });
-            });
-        });
-    </script>
-</section>
- 
-
-
-
-    <!--<section id="gallery" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Life <span class="text-blue-600">Gallery</span></h2>
-            
-            <div class="max-w-4xl mx-auto animate-fade-in delay-100">-->
-                <!-- Gallery Tabs -->
-                <!--<div class="flex flex-wrap justify-center mb-8 gap-2">
-                    <button class="gallery-tab bg-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-100 transition" data-tab="primary">
-                        <i class="fas fa-school mr-2"></i> Primary School
-                    </button>
-                    <button class="gallery-tab bg-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-100 transition" data-tab="highschool">
-                        <i class="fas fa-graduation-cap mr-2"></i> High School
-                    </button>
-                    <button class="gallery-tab bg-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-100 transition" data-tab="college">
-                        <i class="fas fa-university mr-2"></i> College
-                    </button>
-                    <button class="gallery-tab bg-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-100 transition active" data-tab="university">
-                        <i class="fas fa-user-graduate mr-2"></i> University
-                    </button>
-                </div>-->
-                
-                <!-- Gallery Content -->
-                <!--<div class="grid grid-cols-2 md:grid-cols-3 gap-4">-->
-                    <!-- Primary School (hidden by default) -->
-                    <!--<div class="gallery-content" data-content="primary" style="display: none;">
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Primary School Days</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">First Day at School</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Annual Sports Day</p>
-                        </div>
-                    </div>-->
-                    
-                    <!-- High School (hidden by default) -->
-                    <!--<div class="gallery-content" data-content="highschool" style="display: none;">
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">High School Graduation</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Science Fair Project</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Friends at School</p>
-                        </div>
-                    </div>-->
-                    
-                    <!-- College (hidden by default) -->
-                    <!--<div class="gallery-content" data-content="college" style="display: none;">
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">College Orientation</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Debate Competition</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">College Festival</p>
-                        </div>
-                    </div>-->
-                    
-                    <!-- University (shown by default) -->
-                    <!--<div class="gallery-content" data-content="university">
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">University Campus</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Hackathon Event</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Graduation Day</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Project Presentation</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">University Friends</p>
-                        </div>
-                        <div class="gallery-item bg-white p-4 rounded-lg shadow">
-                            <div class="w-full h-48 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-gray-400"></i>
-                            </div>
-                            <p class="mt-2 text-center">Research Work</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Get In <span class="text-blue-600">Touch</span></h2>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in delay-100">
-                <div class="bg-gray-50 p-8 rounded-lg shadow-md glow">
-                    <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 floating-btn">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Address</h4>
-                                <p class="text-gray-600">Unit # H9, The Vantage Main Road, Block A, Banasree, 1212 Dhaka, Bangladesh</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 floating-btn">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Email</h4>
-                                <p class="text-gray-600">farhadbillah2020@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 floating-btn">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Phone</h4>
-                                <p class="text-gray-600">+8801704521205</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h3 class="text-xl font-semibold mb-4">Social Profiles</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center hover:bg-gray-700 transition floating-btn">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-500 transition floating-btn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://www.hackerrank.com/profile/RunTimeE" target="_blank" class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center hover:bg-green-500 transition floating-btn">
-                                <i class="fab fa-hackerrank"></i>
-                            </a>
-                            <a href="https://codeforces.com/profile/farhadbillah2020" target="_blank" class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-500 transition floating-btn">
-                                <i class="fas fa-code"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-lg shadow-md glow">
-                    <h3 class="text-xl font-semibold mb-6">Send Me a Message</h3>
-                    <form id="contact-form">
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 mb-2">Your Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition floating-btn">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hobbies Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Hobbies & <span class="text-blue-600">Interests</span></h2>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in delay-100">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-blue-50 transition glow">
-                    <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4 floating-btn">
-                        <i class="fas fa-laptop-code text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Problem Solving</h3>
-                    <p class="text-gray-600">Regularly solving problems on HackerRank and CodeForces</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-blue-50 transition glow">
-                    <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4 floating-btn">
-                        <i class="fas fa-film text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Animation</h3>
-                    <p class="text-gray-600">Creating animations as a creative outlet</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-blue-50 transition glow">
-                    <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4 floating-btn">
-                        <i class="fas fa-plane text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Traveling</h3>
-                    <p class="text-gray-600">Exploring new places and cultures</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-blue-50 transition glow">
-                    <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4 floating-btn">
-                        <i class="fas fa-leaf text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Gardening</h3>
-                    <p class="text-gray-600">Cultivating plants as a relaxing hobby</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="gradient-bg text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-2xl font-bold">Md. Farhad Billah</h2>
-                    <p class="text-blue-200">AI & Web Developer | Data Scientist</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Farhad0111?tab=repositories" target="_blank" class="text-xl hover:text-blue-200 transition floating-btn">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/md-farhad-19234a250/" target="_blank" class="text-xl hover:text-blue-200 transition floating-btn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.hackerrank.com/profile/RunTimeE" target="_blank" class="text-xl hover:text-blue-200 transition floating-btn">
-                        <i class="fab fa-hackerrank"></i>
-                    </a>
-                    <a href="https://codeforces.com/profile/farhadbillah2020" target="_blank" class="text-xl hover:text-blue-200 transition floating-btn">
-                        <i class="fas fa-code"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-blue-400 mt-6 pt-6 text-center text-blue-200">
-                <p>&copy; 2024 Md. Farhad Billah. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition hidden floating-btn">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:farhadbillah2020@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-            )}`;
-            
-            // Open mail client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you for your message! A mail client will open where you can send your message.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Gallery tabs functionality
-        const galleryTabs = document.querySelectorAll('.gallery-tab');
-        galleryTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs
-                galleryTabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Hide all gallery content
-                document.querySelectorAll('.gallery-content').forEach(content => {
-                    content.style.display = 'none';
-                });
-                
-                // Show selected gallery content
-                const tabName = this.getAttribute('data-tab');
-                document.querySelector(`.gallery-content[data-content="${tabName}"]`).style.display = 'grid';
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.createElement('div');
-            particlesContainer.id = 'particles-js';
-            particlesContainer.style.position = 'fixed';
-            particlesContainer.style.top = '0';
-            particlesContainer.style.left = '0';
-            particlesContainer.style.width = '100%';
-            particlesContainer.style.height = '100%';
-            particlesContainer.style.pointerEvents = 'none';
-            particlesContainer.style.zIndex = '-1';
-            document.body.appendChild(particlesContainer);
-
-            // Create 30 particles
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size between 2px and 5px
-                const size = Math.random() * 3 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Initialize particles
-        createParticles();
-
-        // Add fade-in animation to elements when they come into view
-        const animateElements = document.querySelectorAll('.animate-fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });        animateElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(element);
-        });
-    </script>
 </body>
 </html>
